@@ -1,0 +1,45 @@
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Adjust the number of columns as needed */
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .portfolio-header {
+    grid-column: 1 / -1; /* Full width */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .portfolio-row {
+    display: contents; /* This allows the children to participate in the grid of the parent */
+  }
+  
+  .coin {
+    display: flex;
+    align-items: center;
+  }
+  
+  .coin img {
+    height: 32px; /* Adjust size as needed */
+    width: 32px; /* Adjust size as needed */
+    margin-right: 10px;
+  }
+  
+  .coin-name, .coin-price, .coin-change, .coin-volume, .coin-marketcap {
+    text-align: center;
+  }
+  
+  .coin-change.positive {
+    color: green;
+  }
+  
+  .coin-change.negative {
+    color: red;
+  }
+  
+  /* Add additional styling for buttons, icons, etc. */
+  

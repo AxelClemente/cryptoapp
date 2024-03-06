@@ -1,8 +1,4 @@
-.homepage {
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .top-bar {
+    .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +10,7 @@
   }
   
   .menu-button {
-    /* background: #0044cc; */
+    background: #ffffff;
     color: #5ce1e6;
     border: none;
     padding: 10px 20px;
@@ -28,16 +24,19 @@
   }
   
   .info-box {
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 10px;
+    background: #ffffff;
+    border: 1px solid #5ce1e6;
+    padding: 50px;
+    margin-bottom: 40px;
     cursor: pointer;
   }
   
   .info-box p {
     margin: 0;
-    font-size: 18px;
-    color: black;
+    font-weight: 600;
+    font-size: 25px;
+    color: rgb(13, 68, 170)
+    
+    
   }
   
