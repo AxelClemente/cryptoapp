@@ -17,7 +17,7 @@ function HomePage2() {
 
       <main className="content">
         <h1>Your Crypto Assistance</h1>
-        <div className="info-box" onClick={() => {/* handle navigation to Markets Info */}}>
+        <div className="info-box" onClick={() => navigate('/holdings')}>
           <p>Portafolio</p>
         </div>
         <div className="info-box" onClick={() => {/* handle navigation to AI Assistance */}}>

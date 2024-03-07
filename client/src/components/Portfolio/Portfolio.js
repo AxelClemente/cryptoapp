@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Añade esta línea
+
 
 const Portfolio = () => {
   const [cryptos, setCryptos] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +66,7 @@ const Portfolio = () => {
 
   return (
     <div>
+      <button onClick={() => navigate('/')}>Volver</button> {/* Añade este botón */}
       <h1>Mercados top 150 cryptomonedas</h1>
       <ul>
         {cryptos.map((crypto) => (
