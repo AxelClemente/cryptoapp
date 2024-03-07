@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const User = require('./models/User');
+const cors = require('cors');
 const connectDatabase = require('./config/database');
 const app = express();
 const routes = require('./routes/routes');
@@ -9,6 +10,8 @@ const mongoose = require('mongoose');
 const { getPing, getSimplePrice, getCoinsMarkets } = require('./api/api'); 
 app.use(express.static('public'));
 const authRoutes = require('./routes/auth.routes')
+const portfolioRoutes = require('./routes/portfolio.routes')
+const authenticateToken = require('./middlewares/authenticateToken');
 
 // Conectar a la base de datos
 connectDatabase();
@@ -16,9 +19,13 @@ connectDatabase();
 // Usar las rutas definidas
 app.use(routes);
 app.use(express.json()); // Middleware para parsear JSON
+app.use(cors());
 
 // Rutas de autenticación
 app.use("/auth", authRoutes);
+app.use("/portfolio", portfolioRoutes)
+
+
 
 
 ///////////////////////////////////////////////////// test

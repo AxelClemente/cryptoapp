@@ -8,10 +8,7 @@ const cryptoSchema = new mongoose.Schema({
 
 // Define el esquema del portfolio
 const portfolioSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,

@@ -6,33 +6,6 @@ const User = require('../models/User')
 const Portfolio = require ('../models/Portfolio')
 
 
-// Ruta para crear un nuevo portafolio
-router.post('/portfolio', async (req, res) => {
-  try {
-    // Crear un nuevo portafolio con los datos del cuerpo de la solicitud
-    const newPortfolio = new Portfolio({
-      name: req.body.name,
-      cryptos: req.body.cryptos // Asumiendo que 'cryptos' es un array de objetos de criptomonedas
-    });
-
-    // Guardar el portafolio en la base de datos
-    const savedPortfolio = await newPortfolio.save();
-
-    // Enviar una respuesta exitosa con el portafolio guardado
-    res.status(201).json(savedPortfolio);
-  } catch (error) {
-    // En caso de error, enviar una respuesta de error
-    res.status(500).json({ message: 'Error al crear el portafolio', error: error.message });
-  }
-});
-
-module.exports = router;
-
-
-router.get('/portfolio', (req, res) => {
-  res.json({ message: 'Esta es la página de Portfolio' });
-});
-
 router.get('/api/ping', async (req, res) => {
     try {
       const response = await getPing();
