@@ -15,7 +15,7 @@ router.get('/holdings', authenticateToken, (req, res) => { // Asegúrate de usar
       if (!portfolio) {
         return res.status(404).json({ message: "Portfolio not found" });
       }
-      console.log("Portfolio encontrado:", portfolio); // Aquí agregas el console.log
+      // console.log("Portfolio encontrado:", portfolio); // Aquí agregas el console.log
       res.json(portfolio);
     })
     .catch(error => res.status(500).json({ message: "Error fetching portfolio", error: error.message }));

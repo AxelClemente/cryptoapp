@@ -12,6 +12,7 @@ function HomePage2() {
       <header className="top-bar">
         <img src="Logo.png" alt="Logo" className="logo" />
         <button className="menu-button" onClick={() => navigate('/signup')}>Signup</button>
+        <button className="menu-button" onClick={() => navigate('/login')}>Login</button>
 
       </header>
 

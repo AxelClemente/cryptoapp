@@ -6,6 +6,8 @@ import HomePage2 from './components/HomePage2/HomePage2';
 import PortfolioPage from './components/Portfolio/Portfolio';
 import Signup from './components/Singup/Singup'
 import Holdings from './components/Holdings/Holdings';
+import LoginPage from './components/Login/LoginPage';
+
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
       <div>
         {/* Define routes */}
         <Routes>
+          
           <Route exact path="/" element={<HomePage2 />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/holdings" element={<Holdings/>} />

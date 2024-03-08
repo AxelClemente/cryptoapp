@@ -36,17 +36,37 @@ router.post("/signup", async (req, res) => {
 });
 
 
+// router.post('/login', async (req, res) => {
+//   // Intentar encontrar al usuario basado en el correo electrónico
+//   const user = await User.findOne({ email: req.body.email });
+//   if (user && await bcrypt.compare(req.body.password, user.password)) {
+//     // Las credenciales son correctas, generar un token
+//     const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET);
+//     res.json({ token });
+//   } else {
+//     // Credenciales incorrectas
+//     res.status(401).send('Correo electrónico o contraseña incorrectos');
+//   }
+// });
+
 router.post('/login', async (req, res) => {
-  // Intentar encontrar al usuario basado en el correo electrónico
+  // Encuentra al usuario por su email
   const user = await User.findOne({ email: req.body.email });
-  if (user && await bcrypt.compare(req.body.password, user.password)) {
-    // Las credenciales son correctas, generar un token
-    const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET);
-    res.json({ token });
-  } else {
-    // Credenciales incorrectas
-    res.status(401).send('Correo electrónico o contraseña incorrectos');
+  if (!user) {
+      return res.status(404).send('Usuario no encontrado');
   }
+
+  // Comprueba si la contraseña es correcta
+  const isMatch = await bcrypt.compare(req.body.password, user.password);
+  if (!isMatch) {
+      return res.status(400).send('Contraseña incorrecta');
+  }
+
+  // Genera un token JWT
+  const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+
+  // Envía el token al cliente
+  res.json({ token });
 });
 
 module.exports = router;
