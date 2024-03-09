@@ -14,11 +14,14 @@
 const mongoose = require('mongoose');
 
 const connectDatabase = () => {
-  const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER_URL}/?retryWrites=true&w=majority&appName=Cluster0`;
+  const uri = process.env.URI; // Asumiendo que 'URI' contiene la cadena de conexión completa
 
   mongoose
     .connect(uri)
-    .then(() => console.log('Connected to MongoDB Atlas working'))
+    .then((x) => {
+      const name = x.connections[0].name;
+      console.log(`Connected to Mongo! Database name: "${name}"`);
+    }) 
     .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
 };
 
