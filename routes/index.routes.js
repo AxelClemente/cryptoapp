@@ -3,7 +3,8 @@ const router = express.Router();
 
 
 router.get("/", (req, res, next) => {
-    res.json("All good in here");
+    res.status(200).json("All good in here");
 });
+
 
 module.exports = router;
