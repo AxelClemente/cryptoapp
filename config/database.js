@@ -11,19 +11,23 @@
 // module.exports = connectDatabase;
 
 //Conexion en la nube
+
 const mongoose = require('mongoose');
 
-const connectDatabase = () => {
-  const uri = process.env.URI; // Asumiendo que 'URI' contiene la cadena de conexión completa
+const connectDatabase = async () => {
+  const uri = process.env.URI; // Ensure that 'URI' contains the complete connection string
 
-  mongoose
-    .connect(uri)
-    .then((x) => {
-      const name = x.connections[0].name;
-      console.log(`Connected to Mongo! Database name: "${name}"`);
-    }) 
-    .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
+  try {
+    const conn = await mongoose.connect(uri);
+
+    console.log(`Connected to Mongo! Database name: "${conn.connection.name}"`);
+  } catch (err) {
+    console.error('Error connecting to MongoDB Atlas:', err);
+    process.exit(1);
+  }
 };
 
 module.exports = connectDatabase;
+
+
 

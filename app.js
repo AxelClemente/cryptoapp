@@ -29,5 +29,8 @@ app.use("/auth", authRoutes);
 app.use("/portfolio", portfolioRoutes)
 app.use('/api', holdingsRoutes); // Asegúrate de que 'api' esté en la ruta
 
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 
 module.exports = app;
