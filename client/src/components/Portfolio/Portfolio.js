@@ -17,33 +17,34 @@ const Portfolio = () => {
 
   useEffect(() => {
     const now = new Date().getTime();
-
-    // Verificamos si la caché aún es válida
+  
     if (now - lastFetchTime < CACHE_TIME && cryptos.length) {
       console.log('Usando datos de caché');
-      return; // Los datos son recientes, no necesitamos actualizarlos
+      return;
     }
 
-    // Si la caché no es válida o es la primera vez, hacemos la solicitud
+      // Obtén el token del almacenamiento local
+    const token = localStorage.getItem('token');
+    if (!token) {
+    console.error('Token no encontrado');
+    return;
+  }
+  
+    // Actualiza la solicitud para obtener datos de tu backend
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-          params: {
-            vs_currency: 'usd',
-            order: 'market_cap_desc',
-            per_page: 150,
-            page: 1
-          }
-        });
+        // Asume que tienes un endpoint en tu backend /portfolio/markets
+        const response = await axios.get('/portfolio/markets', { headers: { 'Authorization': `Bearer ${token}` } });
         setCryptos(response.data);
-        setLastFetchTime(now); // Actualizamos el tiempo de la última solicitud
+        setLastFetchTime(now);
       } catch (error) {
         console.error('Error fetching data from the API', error);
       }
     };
-
+  
     fetchData();
   }, [cryptos, lastFetchTime]);
+
   const handleOpenModal = (cryptoId) => {
     const crypto = cryptos.find(c => c.id === cryptoId); // Encuentra la criptomoneda seleccionada
     if (crypto) {
