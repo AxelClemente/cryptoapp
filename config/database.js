@@ -15,7 +15,7 @@
 const mongoose = require('mongoose');
 
 const connectDatabase = async () => {
-  const uri = process.env.URI; // Ensure that 'URI' contains the complete connection string
+  const uri = process.env.MONGO_URI; // Ensure that 'URI' contains the complete connection string
 
   try {
     const conn = await mongoose.connect(uri);

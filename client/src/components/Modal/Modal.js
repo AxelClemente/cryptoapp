@@ -37,23 +37,7 @@ const Modal = ({ onClose, onConfirm, amount, setAmount, currentPrice, currentDat
               required
             />
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="date">Date *</label>
-            <input
-              id="date"
-              type="text" // Cambiado a text para que sea de solo lectura
-              value={currentDate} // Utiliza la fecha actual
-              readOnly // Hace el campo de solo lectura
-            />
-          </div> */}
-          {/* <div className="form-group">
-            <label htmlFor="notes">Fees & Notes (Optional)</label>
-            <textarea
-              id="notes"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            />
-          </div> */}
+
           <div className="form-actions">
             <button type="button" onClick={onClose}>Cancel</button>
             <button type="submit" className="submit-button">Submit</button>
