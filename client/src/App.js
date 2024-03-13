@@ -18,7 +18,7 @@ function App() {
         <Routes>
           
           <Route exact path="/" element={<HomePage2 />} />
-          <Route exact path="/" element={<TestBackendConnection />} />
+          <Route exact path="/test-backend" element={<TestBackendConnection />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/signup" element={<Signup />} />

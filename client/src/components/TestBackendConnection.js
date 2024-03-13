@@ -5,10 +5,13 @@ function TestBackendConnection() {
   const [responseMessage, setResponseMessage] = useState('');
 
   useEffect(() => {
+    // Asegúrate de actualizar la URL según tu configuración y entorno
+    const testBackendUrl = `${process.env.REACT_APP_URL}/test-backend`;
+
     const fetchMessage = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_URL}/`);
-        setResponseMessage(response.data);
+        const response = await axios.get(testBackendUrl);
+        setResponseMessage(response.data.message); // Asume que el backend envía un objeto JSON con una propiedad 'message'
       } catch (error) {
         console.error('Error al conectar con el backend:', error);
         setResponseMessage('No se pudo conectar con el backend.');

@@ -19,11 +19,14 @@ connectDatabase();
 app.use(routes);
 app.use(express.json()); // Middleware para parsear JSON
 // app.use(cors());
+// app.use(cors({
+//     credentials: true,
+//     origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
+//   }));
 app.use(cors({
-    credentials: true,
-    origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
-  }));
-  
+  credentials: true,
+  origin: true
+}));
 app.use(express.static('public'));
 
 // Rutas de autenticación
