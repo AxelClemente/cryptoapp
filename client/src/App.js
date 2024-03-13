@@ -7,6 +7,7 @@ import PortfolioPage from './components/Portfolio/Portfolio';
 import Signup from './components/Singup/Singup'
 import Holdings from './components/Holdings/Holdings';
 import LoginPage from './components/Login/LoginPage';
+import TestBackendConnection from './components/TestBackendConnection';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           
           <Route exact path="/" element={<HomePage2 />} />
+          <Route exact path="/" element={<TestBackendConnection />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/signup" element={<Signup />} />

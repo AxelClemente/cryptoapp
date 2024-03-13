@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 
-router.get("/", (req, res, next) => {
+router.get("/test-backend", (req, res, next) => {
     res.status(200).json("All good in here");
 });
 

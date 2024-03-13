@@ -24,6 +24,9 @@ function HomePage2() {
         <div className="info-box" onClick={() => {/* handle navigation to AI Assistance */}}>
           <p>Asistente AI</p>
         </div>
+        <div className="info-box" onClick={() => navigate('/test-backend')}>
+          <p>Test Cycli</p>
+        </div>
         <div className="info-box" onClick={() => navigate('/portfolio')}>
           <p>Mercado</p>
         </div>
