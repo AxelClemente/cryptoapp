@@ -72,7 +72,10 @@ const Portfolio = () => {
         }
       };
       
-      const response = await axios.post('/portfolio/add', {
+      // Asegúrate de tener definida REACT_APP_URL en tu .env
+      const backendUrl = process.env.REACT_APP_URL; // Este es el cambio
+      
+      const response = await axios.post(`${backendUrl}/portfolio/add`, {
         userId,
         cryptoId: selectedCryptoId,
         amount,
@@ -84,6 +87,7 @@ const Portfolio = () => {
       console.error('Error adding to portfolio', error);
     }
   };
+
 
   return (
     <div>
