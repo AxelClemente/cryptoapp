@@ -7,16 +7,26 @@ function GoogleLoginPage() {
 
   const handleLoginSuccess = async (response) => {
     console.log('Login exitoso con Google:', response);
-    const token = response.credential; // El JWT está en la propiedad `credential` de la respuesta
-    console.log('JWT:', token); // Confirma el JWT en la consola
-
-    // Almacenar el token en localStorage para mantener la sesión
-    localStorage.setItem('token', token);
-
-    // Opcionalmente enviar el token a tu servidor backend para validar y crear una sesión de usuario
-    // Ejemplo comentado previamente
-
-    navigate('/HomePage2'); // Redirige al usuario a la página deseada tras el login
+    const token = response.credential; // JWT proporcionado por Google
+  
+    try {
+      // Extracción de datos del token aquí (si es necesario, depende de tu implementación en el backend)
+      const { email, name } = decodeToken(token); // Asume que tienes una función decodeToken para decodificar el JWT y extraer email y name
+  
+      // Envía los datos al backend
+      const backendResponse = await axios.post(`${process.env.REACT_APP_URL="https://bitforecast.cyclic.app"
+        }/auth/google`, {
+        email,
+        name,
+      });
+  
+      // Almacenamiento del token propio del backend en localStorage
+      localStorage.setItem('token', backendResponse.data.token);
+  
+      navigate('/HomePage2');
+    } catch (error) {
+      console.error('Error al enviar información al backend:', error);
+    }
   };
 
   const handleLoginFailure = (error) => {
