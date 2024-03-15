@@ -35,6 +35,31 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+// router.post('/google', async (req, res) => {
+//   const { email, name } = req.body; // Suponiendo que estos datos vienen del cliente y fueron extraídos del token de Google
+
+//   try {
+//     let user = await User.findOne({ email });
+
+//     if (!user) {
+//       // Si no existe el usuario, crea uno nuevo
+//       user = new User({
+//         name,
+//         email,
+//         password: null, // Puedes decidir no almacenar una contraseña, o almacenar un valor placeholder seguro
+//       });
+//       await user.save();
+//     }
+
+//     // Independientemente de si el usuario es nuevo o existente, genera tu propio token
+//     const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' });
+
+//     res.status(200).json({ user, token });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error al procesar el inicio de sesión con Google", error: error.message });
+//   }
+// });
+
 
 // router.post('/login', async (req, res) => {
 //   // Intentar encontrar al usuario basado en el correo electrónico
