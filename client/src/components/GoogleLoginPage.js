@@ -14,11 +14,8 @@ function GoogleLoginPage() {
       const { email, name } = decodeToken(token); // Asume que tienes una función decodeToken para decodificar el JWT y extraer email y name
   
       // Envía los datos al backend
-      const backendResponse = await axios.post(`${process.env.REACT_APP_URL="https://bitforecast.cyclic.app"
-        }/auth/google`, {
-        email,
-        name,
-      });
+      const backendResponse = await axios.post(`${process.env.REACT_APP_URL}/auth/google`, { email, name });
+
   
       // Almacenamiento del token propio del backend en localStorage
       localStorage.setItem('token', backendResponse.data.token);
