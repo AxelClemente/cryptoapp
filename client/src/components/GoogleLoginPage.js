@@ -32,7 +32,7 @@ function GoogleLoginPage() {
     <div>
       <h2>Iniciar sesión con Google</h2>
       <GoogleLogin
-        onSuccess={handleLoginSuccess}
+        onSuccess={handleLoginSuccess} 
         onError={handleLoginFailure}
         useOneTap
       />

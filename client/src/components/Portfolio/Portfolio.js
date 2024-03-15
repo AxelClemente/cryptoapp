@@ -34,9 +34,8 @@ const Portfolio = () => {
     const fetchData = async () => {
       try {
         // Asume que tienes un endpoint en tu backend /portfolio/markets
-        const response = await axios.get(`${process.env.REACT_APP_URL}/portfolio/markets`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });        console.log("seguro undefine la respuesta", response)
+        const response = await axios.get(`${process.env.REACT_APP_URL}/portfolio/markets`,{headers: { 'Authorization': `Bearer ${token}` }});        
+          console.log("seguro undefine la respuesta", response)
         setCryptos(response.data);
         setLastFetchTime(now);
       } catch (error) {
@@ -62,31 +61,58 @@ const Portfolio = () => {
     console.log("El estado de showModal cambió a:", showModal);
   }, [showModal]);
 
+  // const handleAddToPortfolio = async () => {
+  //   try {
+  //     const userId = localStorage.getItem('userId');
+  //     const token = localStorage.getItem('token');
+  //     console.log("Tokennnnnnnnnnnnnnnnnnn:", token);
+
+  //     const config = {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`
+  //       }
+  //     };
+      
+  //     // Asegúrate de tener definida REACT_APP_URL en tu .env
+  //     const backendUrl = process.env.REACT_APP_URL; // Este es el cambio
+      
+  //     const response = await axios.post(`${backendUrl}/portfolio/add`, {
+  //       userId,
+  //       cryptoId: selectedCryptoId,
+  //       amount,
+  //     }, config);
+
+  //     console.log("Cryptomonedas añadidas al portfolio", response.data);
+  //     setShowModal(false); // Cierra el modal después de agregar
+  //   } catch (error) {
+  //     console.error('Error adding to portfolio', error);
+  //   }
+  // };
+
   const handleAddToPortfolio = async () => {
     try {
       const userId = localStorage.getItem('userId');
       const token = localStorage.getItem('token');
-      const config = {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      };
-      
+      console.log("Tokennnnnnnnnnnnnnnnnnn:", token);
+  
       // Asegúrate de tener definida REACT_APP_URL en tu .env
       const backendUrl = process.env.REACT_APP_URL; // Este es el cambio
-      
+  
       const response = await axios.post(`${backendUrl}/portfolio/add`, {
         userId,
         cryptoId: selectedCryptoId,
         amount,
-      }, config);
-
+      }, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+  
       console.log("Cryptomonedas añadidas al portfolio", response.data);
       setShowModal(false); // Cierra el modal después de agregar
     } catch (error) {
       console.error('Error adding to portfolio', error);
     }
   };
+  
 
 
   return (
