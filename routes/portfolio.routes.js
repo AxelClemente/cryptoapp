@@ -27,7 +27,7 @@ router.get('/markets', authenticateToken, async (req, res) => {
 });
 
 
-// Modifica la ruta existente para ajustarse al nuevo flujo
+// Modifica la ruta existente para ajustarse al nuevo flujooo
 router.post('/add',  async (req, res) => {
   const { userId, cryptoId, amount } = req.body;
   console.log('Solicitud recibida en /portfolio/add', req.body);
@@ -51,5 +51,6 @@ router.post('/add',  async (req, res) => {
     res.status(500).json({ message: "Error adding crypto to portfolio", error: error.toString() });
   }
 });
+
 
 module.exports = router;
