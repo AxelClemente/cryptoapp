@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function GoogleLoginPage() {
   const navigate = useNavigate();
@@ -10,16 +11,12 @@ function GoogleLoginPage() {
     const token = response.credential; // JWT proporcionado por Google
   
     try {
-      // Extracción de datos del token aquí (si es necesario, depende de tu implementación en el backend)
-      const { email, name } = decodeToken(token); // Asume que tienes una función decodeToken para decodificar el JWT y extraer email y name
-  
-      // Envía los datos al backend
-      const backendResponse = await axios.post(`${process.env.REACT_APP_URL}/auth/google`, { email, name });
+      // Envía el JWT directamente al backend
+      const backendResponse = await axios.post(`${process.env.REACT_APP_URL}/auth/google`, { token });
 
-  
       // Almacenamiento del token propio del backend en localStorage
       localStorage.setItem('token', backendResponse.data.token);
-  
+
       navigate('/HomePage2');
     } catch (error) {
       console.error('Error al enviar información al backend:', error);
@@ -44,6 +41,7 @@ function GoogleLoginPage() {
 }
 
 export default GoogleLoginPage;
+
 
 
 // import React from 'react';
