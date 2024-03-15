@@ -28,7 +28,7 @@ router.get('/markets', authenticateToken, async (req, res) => {
 
 
 // Modifica la ruta existente para ajustarse al nuevo flujo
-router.post('/add', authenticateToken, async (req, res) => {
+router.post('/add',  async (req, res) => {
   const { userId, cryptoId, amount } = req.body;
   console.log('Solicitud recibida en /portfolio/add', req.body);
 
