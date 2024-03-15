@@ -7,7 +7,7 @@ const authRoutes = require('./routes/auth.routes')
 const portfolioRoutes = require('./routes/portfolio.routes')
 const holdingsRoutes = require('./routes/holdings.routes');
 const indexRoutes = require('./routes/index.routes'); // Ajusta la ruta según sea necesario
-
+//Todo funcionando perfecto
 
 const app = express();
 const routes = require('./routes/routes');
