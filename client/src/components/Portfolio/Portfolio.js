@@ -34,7 +34,9 @@ const Portfolio = () => {
     const fetchData = async () => {
       try {
         // Asume que tienes un endpoint en tu backend /portfolio/markets
-        const response = await axios.get('/portfolio/markets', { headers: { 'Authorization': `Bearer ${token}` } });
+        const response = await axios.get(`${process.env.REACT_APP_URL}/portfolio/markets`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });        console.log("seguro undefine la respuesta", response)
         setCryptos(response.data);
         setLastFetchTime(now);
       } catch (error) {
