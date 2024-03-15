@@ -6,6 +6,8 @@ const authenticateToken = require('../middlewares/authenticateToken');
 
 // Añade una nueva ruta para obtener los datos de mercado
 router.get('/markets', authenticateToken, async (req, res) => {
+  console.log("Autenticación exitosa, procediendo a buscar datos de mercado");
+
   try {
     const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
       params: {
@@ -15,12 +17,15 @@ router.get('/markets', authenticateToken, async (req, res) => {
         page: 1
       }
     });
+
+    console.log("Datos de mercado obtenidos exitosamente");
     res.json(response.data);
   } catch (error) {
     console.error('Error fetching data from CoinGecko:', error);
     res.status(500).json({ message: "Error fetching market data", error: error.toString() });
   }
 });
+
 
 // Modifica la ruta existente para ajustarse al nuevo flujo
 router.post('/add', authenticateToken, async (req, res) => {
