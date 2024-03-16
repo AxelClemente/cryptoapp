@@ -10,7 +10,7 @@ const indexRoutes = require('./routes/index.routes'); // Ajusta la ruta según s
 const app = express();
 const routes = require('./routes/routes');
 
-//cambio a estructura de cors abierta
+//cambio a estructura de cors abiertaaaaa
 app.use(cors({
   credentials: true,
   origin: true
