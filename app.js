@@ -7,10 +7,20 @@ const authRoutes = require('./routes/auth.routes')
 const portfolioRoutes = require('./routes/portfolio.routes')
 const holdingsRoutes = require('./routes/holdings.routes');
 const indexRoutes = require('./routes/index.routes'); // Ajusta la ruta según sea necesario
-//Todo funcionando perfecto
-
 const app = express();
 const routes = require('./routes/routes');
+
+// app.use(cors({
+//   credentials: true,
+//   origin: true
+// }));
+
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
+}));
+
+app.use(express.static('public'));
 
 // Conectar a la base de datos
 connectDatabase();
@@ -19,15 +29,8 @@ connectDatabase();
 app.use(routes);
 app.use(express.json()); // Middleware para parsear JSON
 // app.use(cors());
-// app.use(cors({
-//     credentials: true,
-//     origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
-//   }));
-app.use(cors({
-  credentials: true,
-  origin: true
-}));
-app.use(express.static('public'));
+
+
 
 // Rutas de autenticación
 app.use("/auth", authRoutes);
