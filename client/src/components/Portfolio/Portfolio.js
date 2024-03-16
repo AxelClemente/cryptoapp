@@ -94,6 +94,7 @@ const Portfolio = () => {
       const userId = localStorage.getItem('userId');
       const token = localStorage.getItem('token');
       console.log("Tokennnnnnnnnnnnnnnnnnn:", token);
+      console.log("Axel este es el problema con el user id:", userId)
   
       // Asegúrate de tener definida REACT_APP_URL en tu .env
       const backendUrl = process.env.REACT_APP_URL; // Este es el cambio

@@ -9,12 +9,15 @@ function GoogleLoginPage() {
   const handleLoginSuccess = async (response) => {
     console.log('Login exitoso con Google:', response);
     const token = response.credential; // JWT proporcionado por Google
+    console.log("Info del token de Google", token)
   
     try {
       // Envía el JWT directamente al backend
       const backendResponse = await axios.post(`${process.env.REACT_APP_URL}/auth/google`, { token });
 
       // Almacenamiento del token propio del backend en localStorage
+      localStorage.setItem('userId', backendResponse.data.user._id); // Asegúrate de que este es el campo correcto
+      console.log("User id de GOOGLEEEEEEEEEE", backendResponse.data.user._id )
       localStorage.setItem('token', backendResponse.data.token);
 
       navigate('/HomePage2');

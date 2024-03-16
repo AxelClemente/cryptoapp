@@ -1,4 +1,5 @@
 // auth.routes.js
+// TEST!
 
 const express = require('express');
 const bcrypt = require('bcrypt');
