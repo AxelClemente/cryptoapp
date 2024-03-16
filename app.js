@@ -10,15 +10,16 @@ const indexRoutes = require('./routes/index.routes'); // Ajusta la ruta según s
 const app = express();
 const routes = require('./routes/routes');
 
-// app.use(cors({
-//   credentials: true,
-//   origin: true
-// }));
-
+//cambio a estructura de cors abierta
 app.use(cors({
-    credentials: true,
-    origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
+  credentials: true,
+  origin: true
 }));
+
+// app.use(cors({
+//     credentials: true,
+//     origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
+// }));
 
 app.use(express.static('public'));
 
