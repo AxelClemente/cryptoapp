@@ -26,7 +26,9 @@ const Portfolio = () => {
       // Obtén el token del almacenamiento local
     const token = localStorage.getItem('token');
     if (!token) {
+    console.log("Comprabando el token de google en portfolio page del localStorage:", token)
     console.error('Token no encontrado');
+
     return;
   }
   
@@ -35,7 +37,7 @@ const Portfolio = () => {
       try {
         // Asume que tienes un endpoint en tu backend /portfolio/markets
         const response = await axios.get(`${process.env.REACT_APP_URL}/portfolio/markets`,{headers: { 'Authorization': `Bearer ${token}` }});        
-          console.log("seguro undefine la respuesta", response)
+          console.log("comprobando que token estoy enviando?:", token)
         setCryptos(response.data);
         setLastFetchTime(now);
       } catch (error) {
@@ -93,11 +95,12 @@ const Portfolio = () => {
     try {
       const userId = localStorage.getItem('userId');
       const token = localStorage.getItem('token');
-      console.log("Tokennnnnnnnnnnnnnnnnnn:", token);
+      console.log("Token de google en Portfolio.js:", token);
       console.log("Axel este es el problema con el user id:", userId)
   
       // Asegúrate de tener definida REACT_APP_URL en tu .env
-      const backendUrl = process.env.REACT_APP_URL; // Este es el cambio
+      const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000"; // Este es el cambio
+      
   
       const response = await axios.post(`${backendUrl}/portfolio/add`, {
         userId,

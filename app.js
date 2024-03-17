@@ -11,15 +11,15 @@ const app = express();
 const routes = require('./routes/routes');
 
 //cambio a estructura de cors abiertaaaaa
-app.use(cors({
-  credentials: true,
-  origin: true
-}));
-
 // app.use(cors({
-//     credentials: true,
-//     origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
+//   credentials: true,
+//   origin: true
 // }));
+
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:3001', process.env.ORIGIN] // Aquí se agregan los orígenes permitidos
+}));
 
 app.use(express.static('public'));
 
@@ -47,5 +47,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
 
 module.exports = app;
