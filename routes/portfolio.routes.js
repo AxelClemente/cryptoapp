@@ -42,9 +42,9 @@ router.post('/add', async (req, res) => {
     // Buscando o creando la cartera para el usuario con el ID proporcionado
     let portfolio = await Portfolio.findOne({ userId: userId });
     if (!portfolio) {
-        portfolio = new Portfolio({
-            userId,
-            cryptos: [{ cryptoId, amount }],
+      portfolio = new Portfolio({
+          userId,
+          cryptos: [{ id: cryptoId, amount }], // Asegúrate de usar id aquí también
         });
     } else {
       console.log('Cartera encontrada, agregando la criptomoneda...');
