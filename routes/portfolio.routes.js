@@ -48,7 +48,7 @@ router.post('/add', async (req, res) => {
         });
     } else {
       console.log('Cartera encontrada, agregando la criptomoneda...');
-        portfolio.cryptos.push({ cryptoId, amount });
+        portfolio.cryptos.push({ id: cryptoId, amount });
     }
     const updatedPortfolio = await portfolio.save();
     res.status(200).json(updatedPortfolio);
