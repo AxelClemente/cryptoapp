@@ -117,11 +117,15 @@ const Portfolio = () => {
     }
   };
   
+      // Función para manejar el evento de clic en el botón de retroceso
+      const handleGoBack = () => {
+        navigate(-1); // Navega hacia atrás en el historial del navegador
+      };
 
 
   return (
     <div>
-      <button onClick={() => navigate('/')}>Volver</button>
+      <button onClick={handleGoBack}>Volver atrás</button> {/* Botón para ir hacia atrás */}
       <h1>Mercados top 150 cryptomonedas</h1>
       <ul>
         {cryptos.map((crypto) => (

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+
 
 function TestBackendConnection() {
   const [responseMessage, setResponseMessage] = useState('');
+  const navigate = useNavigate(); // Instancia useNavigate
+
 
   useEffect(() => {
     // Asegúrate de actualizar la URL según tu configuración y entorno
@@ -21,8 +25,14 @@ function TestBackendConnection() {
     fetchMessage();
   }, []);
 
+    // Función para manejar el evento de clic en el botón de retroceso
+    const handleGoBack = () => {
+      navigate(-1); // Navega hacia atrás en el historial del navegador
+    };
+
   return (
     <div>
+      <button onClick={handleGoBack}>Volver atrás</button> {/* Botón para ir hacia atrás */}
       <h2>Respuesta del Backend:</h2>
       <p>{responseMessage}</p>
     </div>
