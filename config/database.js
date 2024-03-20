@@ -1,17 +1,3 @@
-// Conexion local
-// const mongoose = require('mongoose');
-
-// const connectDatabase = () => {
-//   mongoose
-//     .connect('mongodb://localhost/Axel')
-//     .then(() => console.log(`Connected to Mongo! Database name: "Axel"`))
-//     .catch(err => console.error('Error connecting to mongo', err));
-// };
-
-// module.exports = connectDatabase;
-
-//Conexion en la nube
-
 const mongoose = require('mongoose');
 
 const connectDatabase = async () => {

@@ -21,8 +21,9 @@ router.get('/markets',  async (req, res) => {
       }
     });
 
-    console.log("Datos de mercado obtenidos exitosamente");
+    console.log("Datos de mercado obtenidos exitosamente", response.data);
     res.json(response.data);
+   
   } catch (error) {
     console.error('Error fetching data from CoinGecko:', error);
     res.status(500).json({ message: "Error fetching market data", error: error.toString() });

@@ -7,9 +7,9 @@ function GoogleLoginPage() {
   const navigate = useNavigate();
 
   const handleLoginSuccess = async (response) => {
-    console.log('Login exitoso con Google:', response);
+    // console.log('Login exitoso con Google:', response);
     const token = response.credential; // JWT proporcionado por Google
-    console.log("Info del token de Google", token)
+    // console.log("Info del token de Google", token)
   
     try {
       // Envía el JWT directamente al backend
@@ -17,7 +17,7 @@ function GoogleLoginPage() {
 
       // Almacenamiento del token propio del backend en localStorage
       localStorage.setItem('userId', backendResponse.data.user._id); // Asegúrate de que este es el campo correcto
-      console.log("User id de GOOGLEEEEEEEEEE", backendResponse.data.user._id )
+      // console.log("User id de GOOGLEEEEEEEEEE", backendResponse.data.user._id )
       localStorage.setItem('token', backendResponse.data.token);
 
       navigate('/HomePage2');
