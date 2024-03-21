@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal'; // Asegúrate de crear este componente
+import Header from '../../Header'
 
 // Supongamos que añadimos un tiempo de vida de la caché de 1 minuto
 const CACHE_TIME = 7 * 60 * 1000; // 3 minutos en milisegundos
@@ -98,19 +99,10 @@ const Portfolio = () => {
 
   return (
     <div className="mx-[210px]">
-      <button onClick={handleGoBack}>Volver atrás</button> {/* Botón para ir hacia atrás */}
-      <h1>Mercados top 150 cryptomonedas</h1>
-      {/* <ul>
-        {cryptos.map((crypto) => (
-          <li key={crypto.id}>
-            <img src={crypto.image} alt={crypto.name} style={{ width: '20px', height: '20px' }} />
-            <span>{crypto.name}: ${crypto.current_price}</span>
-            <button onClick={() => handleOpenModal(crypto.id)}>Agregar</button>
-            
-..
-          </li>
-        ))}
-      </ul> */}
+      {/* <button onClick={handleGoBack}>Volver atrás</button> Botón para ir hacia atrás */}
+      <Header handleGoback={handleGoBack}/>
+
+
       <ul role="list" className="divide-y divide-gray-100">
           {cryptos.map((crypto) => (
             <li key={crypto.name} className="flex justify-between gap-x-6 py-5">
@@ -160,6 +152,8 @@ const Portfolio = () => {
         amount={amount}
         setAmount={setAmount}
         currentPrice={selectedCryptoPrice} // Pasa el precio actual al modal
+        cryptoName={selectedCryptoId} // Asume que tienes una variable o estado para el nombre
+
       />
     )}
     </div>
