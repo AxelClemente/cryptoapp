@@ -97,7 +97,7 @@ const Portfolio = () => {
 
 
   return (
-    <div className="mx-[40px]">
+    <div className="mx-[210px]">
       <button onClick={handleGoBack}>Volver atrás</button> {/* Botón para ir hacia atrás */}
       <h1>Mercados top 150 cryptomonedas</h1>
       {/* <ul>
@@ -118,20 +118,27 @@ const Portfolio = () => {
                 <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={crypto.image} alt="" />
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">{crypto.name}</p>
-                  <p className="mt-1 truncate text-xs leading-5 text-gray-500">{crypto.current_price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })} $</p>
+                  <p className="mt-1 truncate text-s leading-5 text-gray-500">{crypto.current_price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })} $</p>
                 </div>
               </div>
               <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
               {/* <p className="text-sm leading-6 text-gray-900">ATH {crypto.ath.toLocaleString()} $</p> */}
               {/* <p className="text-sm leading-6 text-gray-900">{crypto.ath.toLocaleString('es-ES')}$</p> */}
-              <p className="text-sm leading-6 text-gray-900">{crypto.ath.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}$</p>
+              <p className="text-sm leading-6 text-gray-900">ATH - {crypto.ath.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}$</p>
 
 {crypto.ath ? (
-  <div className="mt-1 text-xs leading-5 text-gray-500">
-    24h <span style={{ color: crypto.price_change_percentage_24h < 0 ? 'red' : '#80e038' }}>
+  <div className="mt-1 text-s leading-5 text-gray-500">
+     <span style={{ color: crypto.price_change_percentage_24h < 0 ? 'red' : '#009393' }}>
       {crypto.price_change_percentage_24h.toFixed(1)}%
     </span>
-    <button onClick={() => handleOpenModal(crypto.id)} className="ml-2 text-blue-500 hover:text-blue-700">Agregar</button>
+    <span 
+        onClick={() => handleOpenModal(crypto.id)} 
+        className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ml-2 hover:text-blue-700 cursor-pointer" 
+        style={{ backgroundColor: '#f7931a', color: '#ffffff', borderColor: 'rgba(247,147,26,0.4)' }} 
+        >
+        Agregar
+    </span>
+
   </div>
 ) : (
   <div className="mt-1 flex items-center gap-x-1.5">
