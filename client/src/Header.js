@@ -1,9 +1,10 @@
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+// import { Fragment } from 'react';
+import { Disclosure} from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
 
 const navigation = [
-  { name: 'HomePage', href: '#', current: true },
+  { name: 'Home', href: '/HomePage2', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
@@ -14,7 +15,7 @@ function classNames(...classes) {
 }
 
 export default function Header({ handleGoback }) {
-    console.log(handleGoback)
+    // console.log(handleGoback)
   return (
     <Disclosure as="nav" className="bg-custom-orange">
       {({ open }) => (
@@ -23,13 +24,6 @@ export default function Header({ handleGoback }) {
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button */}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button> */}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-black hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     {open ? (
                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -46,7 +40,7 @@ export default function Header({ handleGoback }) {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Navigation items */}
-                    {navigation.map((item) => item.name === 'HomePage' ? (
+                    {navigation.map((item) => item.name === 'Home' ? (
                         <button
                           key={item.name}
                           onClick={handleGoback} // Usar directamente handleGoBack

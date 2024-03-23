@@ -1,75 +1,114 @@
 import React, { useState, useEffect } from 'react';
 import './holdings.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Añade esta línea
-
-
-// Definir el tiempo de caché en milisegundos (5 minutos)
-const CACHE_TIME = 8 * 60 * 1000;
+import Header from '../../Header'
+import { useNavigate } from 'react-router-dom';
 
 function Holdings() {
-  const [portfolio, setPortfolio] = useState([]);
-  const [lastFetchTime, setLastFetchTime] = useState(null);
-  const navigate = useNavigate()
+  const [cryptos, setCryptos] = useState([]);
+  const navigate = useNavigate();
 
+  const handleGoBack = () => {
+    navigate(-1); // Navega hacia atrás en el historial del navegador
+  };
 
   useEffect(() => {
-    // Verificar si los datos de la caché aún son válidos
-    if (lastFetchTime && new Date() - new Date(lastFetchTime) < CACHE_TIME) {
-      console.log('Usando datos de caché para el portafolio');
-      return;
-    }
-
     const fetchPortfolio = async () => {
       try {
         const token = localStorage.getItem('token');
-        const config = { headers: { Authorization: `Bearer ${token}` } };
-        const { data } = await axios.get('/api/holdings', config);
-        const portfolioData = data.cryptos;
-
-        // Hacer solicitud para obtener detalles adicionales si es necesario
-        const cryptoDetailsPromises = portfolioData.map(async (crypto) => {
-          const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${crypto.id}`);
-          return {
-            id: crypto.id,
-            amount: crypto.amount,
-            image: response.data.image.small,
-            current_price: response.data.market_data.current_price.usd,
-          };
-        });
-
-        const enrichedPortfolio = await Promise.all(cryptoDetailsPromises);
-        setPortfolio(enrichedPortfolio);
-        setLastFetchTime(new Date().toISOString()); // Actualizar la hora de la última solicitud
-        console.log('Datos del portafolio actualizados desde la API');
+        if (!token) {
+          console.error('No token found');
+          return;
+        }
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        const response = await axios.get('/api/holdings', config);
+        setCryptos(response.data.cryptos);
+        console.log("1- quiero saber cual es esta respuesta",response.data.cryptos)
       } catch (error) {
-        console.error('Error fetching portfolio data:', error);
+        console.error('Error fetching portfolio:', error);
       }
     };
 
     fetchPortfolio();
-  }, [lastFetchTime]);
+  }, []);
+
+  useEffect(() => {
+    const fetchMarketData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('No token found');
+          return;
+        }
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        const portfolioResponse = await axios.get('/api/holdings', config);
+        console.log("2- Informacion de la del backend en Holdings.js", portfolioResponse)
+        const portfolioIDs = portfolioResponse.data.cryptos.map(crypto => crypto.id);
+        
+        const marketResponse = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+          params: {
+            vs_currency: 'usd',
+            ids: portfolioIDs.join(','),
+            order: 'market_cap_desc',
+            per_page: 150,
+            page: 1
+          }
+        });
+        console.log("3- informacion de la API en Holdings.js", marketResponse.data);
+        
+        const enrichedCryptos = portfolioResponse.data.cryptos.map(crypto => {
+          const marketCrypto = marketResponse.data.find(marketCrypto => marketCrypto.id === crypto.id);
+          return {
+            ...crypto,
+            name: marketCrypto?.name || 'Nombre no disponible',
+            image: marketCrypto?.image || 'URL de imagen predeterminada',
+            current_price: marketCrypto?.current_price || 0,
+          };
+        });
+        
+  
+        setCryptos(enrichedCryptos);
+      } catch (error) {
+        console.error('Error fetching market data:', error);
+      }
+    };
+  
+    fetchMarketData();
+  }, []);
+  
+
 
 
   return (
-    <div>
-      <button onClick={() => navigate('/')}>Volver</button> {/* Añade este botón */}
-      <h1>Mi Portafolio</h1>
-      <ul>
-        {portfolio.map((crypto) => (
-          <li key={crypto.id}>
-              <img src={crypto.image} alt={crypto.id} style={{ width: '50px', height: '50px' }} />
-              {/* <span>{crypto.id}: ${crypto.current_price} - Amount: {crypto.amount}</span> */}
-              <span>
-                {crypto.id}: ${crypto.current_price.toFixed(2)} - 
-                Amount: {crypto.amount} - 
-                Total: ${(crypto.current_price * crypto.amount).toFixed(2)}
-              </span>
-          </li>
-            ))}
-      </ul>
+    <div className="mx-[210px]">
+      <Header handleGoback={handleGoBack}/>
+      <ul className="divide-y divide-gray-100">
+          {cryptos.map((crypto) => (
+            <li key={crypto.id} className="flex justify-between gap-x-6 py-5">
+              <div className="flex min-w-0 gap-x-4">
+                <img className="h-12 w-12 flex-none rounded-full" src={crypto.image} alt={crypto.name} />
+                <div className="min-w-0 flex-auto">
+                  <p className="text-sm font-semibold leading-6 text-gray-900">{crypto.name}</p>
+                  <p className="mt-1 truncate text-s leading-5 text-gray-500">
+                    {crypto.current_price > 0 
+                      ? crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })
+                      : 'Precio no disponible'} - Cantidad: {crypto.amount}
+                  </p>
+                </div>
+              </div>
+              <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                {/* Aquí puedes añadir más información o acciones relacionadas con cada criptomoneda si es necesario */}
+              </div>
+            </li>
+          ))}
+        </ul>
     </div>
   );
+  
   
 }
 
