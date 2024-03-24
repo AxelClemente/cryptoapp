@@ -17,6 +17,14 @@ code {
     monospace;
 } */
 
+
+/* body {
+  background-image: url('../public/background.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+} */
+
 body {
   font-family: 'Inter', sans-serif;
 }

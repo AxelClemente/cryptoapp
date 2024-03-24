@@ -9,6 +9,7 @@ import LoginPage from './components/Login/LoginPage';
 import TestBackendConnection from './components/TestBackendConnection';
 import GoogleLogIn from './components/GoogleLoginPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import SamplePortfolio from './components/samplePortfolio/Sample';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/holdings" element={<Holdings />} />
+            <Route path="/samplePortfolio" element={<SamplePortfolio />} />
           </Routes>
         </div>
       </Router>

@@ -4,10 +4,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 
 const navigation = [
-  { name: 'Home', href: '/HomePage2', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Bitforecast', href: '/HomePage2', current: true },
+  { name: 'Holdings', href: '/holdings', current: false },
+  { name: 'Markets', href: '/portfolio', current: false },
+  { name: 'Dummy', href: '/samplePortfolio', current: false },
 ];
 
 function classNames(...classes) {
@@ -17,7 +17,9 @@ function classNames(...classes) {
 export default function Header({ handleGoback }) {
     // console.log(handleGoback)
   return (
-    <Disclosure as="nav" className="bg-custom-orange">
+    <Disclosure as="nav" className="bg-custom-black">
+      
+      
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -40,7 +42,7 @@ export default function Header({ handleGoback }) {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Navigation items */}
-                    {navigation.map((item) => item.name === 'Home' ? (
+                    {navigation.map((item) => item.name === 'Bitforecast' ? (
                         <button
                           key={item.name}
                           onClick={handleGoback} // Usar directamente handleGoBack
