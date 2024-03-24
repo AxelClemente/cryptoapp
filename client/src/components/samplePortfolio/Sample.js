@@ -66,6 +66,7 @@ function SamplePortfolio() {
     };
   
     fetchMarketData();
+    // eslint-disable-next-line
   }, []); // Asegúrate de que sampleData no cambie, de lo contrario, deberías incluirlo en el array de dependencias
   
 
