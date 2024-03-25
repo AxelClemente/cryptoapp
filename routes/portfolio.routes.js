@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-// Añade una nueva ruta para obtener los datos de mercado
+// Añade una nueva ruta para obtener los datos de mercadooo
 router.get('/markets',  async (req, res) => {
 
   try {
