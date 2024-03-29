@@ -1,5 +1,83 @@
-/* Aquí tus estilos para el componente Holdings */
-.holdings {
-    padding: 20px;
+.holdings-container {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.crypto-list {
+  list-style: none;
+  padding: 0;
+}
+
+.crypto-qty {
+  color: #cbcbcc; /* Un gris estándar */
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+}
+
+
+.crypto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
+}
+
+.holdings-summary {
+  background-color: #f3f4f6; /* Un fondo distinto para resaltar el resumen */
+}
+
+.crypto-info {
+  display: flex;
+  align-items: center;
+}
+
+.crypto-image {
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.crypto-name, .crypto-price {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.crypto-value {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.price-change {
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+.positive {
+  background-color: #009393;
+  color: #ffffff;
+}
+
+.negative {
+  background-color: #ff4242;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .holdings-container {
+    margin: auto;
+    max-width: 768px;
   }
-  
+
+  .crypto-image {
+    height: 48px;
+    width: 48px;
+  }
+
+  .crypto-name, .crypto-price {
+    font-size: 1rem;
+  }
+}

@@ -1,45 +1,95 @@
 .portfolio-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Adjust the number of columns as needed */
-    gap: 10px;
-    padding: 20px;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.crypto-list {
+  list-style: none;
+  padding: 0;
+}
+
+.crypto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
+}
+
+.crypto-info {
+  display: flex;
+  align-items: center;
+}
+
+.crypto-image {
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.crypto-name, .crypto-price {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.crypto-ath {
+  text-align: right;
+}
+
+.price-change {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+.positive {
+  background-color: #009393;
+  color: #ffffff;
+}
+
+.negative {
+  background-color: #ff4242;
+  color: #ffffff;
+}
+
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f7931a;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.status-online {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #009393;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-container {
+    margin: auto;
+    max-width: 768px;
   }
-  
-  .portfolio-header {
-    grid-column: 1 / -1; /* Full width */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+
+  .crypto-image {
+    height: 48px;
+    width: 48px;
   }
-  
-  .portfolio-row {
-    display: contents; /* This allows the children to participate in the grid of the parent */
+
+  .crypto-name, .crypto-price {
+    font-size: 1rem;
   }
-  
-  .coin {
-    display: flex;
-    align-items: center;
-  }
-  
-  .coin img {
-    height: 32px; /* Adjust size as needed */
-    width: 32px; /* Adjust size as needed */
-    margin-right: 10px;
-  }
-  
-  .coin-name, .coin-price, .coin-change, .coin-volume, .coin-marketcap {
-    text-align: center;
-  }
-  
-  .coin-change.positive {
-    color: green;
-  }
-  
-  .coin-change.negative {
-    color: red;
-  }
-  
-  /* Add additional styling for buttons, icons, etc. */
-  
+}

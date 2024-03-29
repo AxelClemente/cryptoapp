@@ -3,6 +3,7 @@ import './holdings.css';
 import axios from 'axios';
 import Header from '../../Header';
 import { useNavigate } from 'react-router-dom';
+import '../Holdings/holdings.css'
 
 function Holdings() {
   const [cryptos, setCryptos] = useState([]);
@@ -73,43 +74,44 @@ function Holdings() {
   }
 
   return (
-    <div className="mx-[210px]">
+    <div className="holdings-container">
       <Header handleGoback={handleGoBack}/>
-      <ul className="divide-y divide-gray-100">
-      <li className="flex justify-end gap-x-6 py-5">
-          <div className="flex min-w-0 gap-x-4">
-            <img className="h-16 w-16 flex-none rounded-full" src="logo1.png" alt="Holdings" />
-            <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-gray-900">Holdings</p>
-              <p className="mt-1 truncate text-s leading-5 text-gray-500">
+      <ul className="crypto-list">
+      <li className="crypto-item holdings-summary">
+          <div className="crypto-info" >
+            <img className="crypto-image" src="logo1.png" alt="Holdings" />
+            <div >
+              <p className="crypto-name">Holdings</p>
+              <p className="crypto-price">
                 {totalHoldings.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
               </p>
             </div>
           </div>
         </li>
         {cryptos.map((crypto) => (
-          <li key={crypto.id} className="flex justify-between gap-x-6 py-5">
-            <div className="flex min-w-0 gap-x-4">
-              <img className="h-12 w-12 flex-none rounded-full" src={crypto.image} alt={crypto.name} />
-              <div className="min-w-0 flex-auto">
-                <p className="text-sm font-semibold leading-6 text-gray-900">{crypto.name}</p>
-                <p className="mt-1 truncate text-s leading-5 text-gray-500">
+          <li key={crypto.id} className="crypto-item">
+            <div className="crypto-info">
+              <img className="crypto-image" src={crypto.image} alt={crypto.name} />
+              <div >
+                <p className="crypto-name">{crypto.name}</p>
+                <p className="crypto-price">
                   {crypto.current_price > 0 
                     ? crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })
-                    : 'Precio no disponible'} - Cantidad: {crypto.amount}
+                    : 'Precio no disponible'}
+                    <span className="crypto-qty">  QTY: {crypto.amount}</span>
                 </p>
               </div>
 
             </div>
             
-            <div className="mt-1 text-s leading-5 text-gray-500">
+            <div className="crypto-value">
               <span>               
                 <span style={{ color: crypto.price_change_percentage_24h < 0 ? 'red' : '#009393' }}>
                   ${(crypto.current_price * crypto.amount).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
                 </span>
 
               </span>
-          </div>
+            </div>
 
           </li>
         ))}

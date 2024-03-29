@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal'; // Asegúrate de crear este componente
 import Header from '../../Header'
+import '../Portfolio/portfolio.css'
 
 // Supongamos que añadimos un tiempo de vida de la caché de 1 minuto
 const CACHE_TIME = 7 * 60 * 1000; // 3 minutos en milisegundos
@@ -98,48 +99,48 @@ const Portfolio = () => {
 
 
   return (
-    <div className="mx-[210px]">
+    <div className="portfolio-container">
       {/* <button onClick={handleGoBack}>Volver atrás</button> Botón para ir hacia atrás */}
       <Header handleGoback={handleGoBack}/>
 
 
-      <ul role="list" className="divide-y divide-gray-100">
+      <ul role="list" className="crypto-list">
           {cryptos.map((crypto) => (
-            <li key={crypto.name} className="flex justify-between gap-x-6 py-5">
-              <div className="flex min-w-0 gap-x-4">
-                <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={crypto.image} alt="" />
-                <div className="min-w-0 flex-auto">
-                  <p className="text-sm font-semibold leading-6 text-gray-900">{crypto.name}</p>
-                  <p className="mt-1 truncate text-s leading-5 text-gray-500">{crypto.current_price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })} $</p>
+            <li key={crypto.name} className="crypto-item">
+              <div className="crypto-info">
+                <img className="crypto-image" src={crypto.image} alt="" />
+                <div >
+                  <p className="crypto-name">{crypto.name}</p>
+                  <p className="crypto-price">{crypto.current_price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })} $</p>
                 </div>
               </div>
-              <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+              <div className="crypto-ath">
               {/* <p className="text-sm leading-6 text-gray-900">ATH {crypto.ath.toLocaleString()} $</p> */}
               {/* <p className="text-sm leading-6 text-gray-900">{crypto.ath.toLocaleString('es-ES')}$</p> */}
-              <p className="text-sm leading-6 text-gray-900">ATH - {crypto.ath.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}$</p>
+              <p >ATH - {crypto.ath.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}$</p>
 
-{crypto.ath ? (
-  <div className="mt-1 text-s leading-5 text-gray-500">
-     <span style={{ color: crypto.price_change_percentage_24h < 0 ? 'red' : '#009393' }}>
-      {crypto.price_change_percentage_24h.toFixed(1)}%
-    </span>
-    <span 
-        onClick={() => handleOpenModal(crypto.id)} 
-        className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ml-2 hover:text-blue-700 cursor-pointer" 
-        style={{ backgroundColor: '#f7931a', color: '#ffffff', borderColor: 'rgba(247,147,26,0.4)' }} 
-        >
-        Agregar
-    </span>
+          {crypto.ath ? (
+            <div className="crypto-additional">
+              <span style={{ color: crypto.price_change_percentage_24h < 0 ? 'red' : '#009393' }}>
+                {crypto.price_change_percentage_24h.toFixed(1)}%
+              </span>
+              <span 
+                  onClick={() => handleOpenModal(crypto.id)} 
+                  className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ml-2 hover:text-blue-700 cursor-pointer" 
+                  style={{ backgroundColor: '#f7931a', color: '#ffffff', borderColor: 'rgba(247,147,26,0.4)' }} 
+                  >
+                  Agregar
+              </span>
 
-  </div>
-) : (
-  <div className="mt-1 flex items-center gap-x-1.5">
-    <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-      <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-    </div>
-    <p className="text-xs leading-5 text-gray-500">Online</p>
-  </div>
-)}
+            </div>
+              ) : (
+                <div className="status-online">
+                  <div >
+                    <div />
+                  </div>
+                  <p >Online</p>
+                </div>
+              )}
 
               </div>
             </li>
