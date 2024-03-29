@@ -31,7 +31,7 @@ router.get('/markets',  async (req, res) => {
 });
 
 
-// Modifica la ruta existente para ajustarse al nuevo flujo
+/// Modifica la ruta existente para ajustarse al nuevo flujo
 router.post('/add', async (req, res) => {
   const { userId, cryptoId, amount } = req.body; // Directamente usamos userId enviado por el cliente
   console.log('Solicitud recibida en /portfolio/add', req.body);
