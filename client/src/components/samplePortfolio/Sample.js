@@ -76,28 +76,28 @@ function SamplePortfolio() {
   }
 
   return (
-    <div className="mx-[210px]">
+    <div>
       <Header />
       {/* Muestra el valor total */}
-      <div className="flex justify-end items-center mb-4">
-        <img className="h-16 w-16 flex-none rounded-full" src="/bolsa1.png" alt="Total Holdings" />
-        <div className="text-lg font-semibold">
+      <div>
+        <img/>
+        <div>
           Total: {totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
         </div>
       </div>
-      <ul className="divide-y divide-gray-100">
+      <ul>
         {cryptos.map((crypto) => (
-          <li key={crypto.id} className="flex justify-between gap-x-6 py-5">
-            <div className="flex min-w-0 gap-x-4">
-              <img className="h-12 w-12 flex-none rounded-full" src={crypto.image} alt={crypto.name} />
-              <div className="min-w-0 flex-auto">
-                <p className="text-sm font-semibold leading-6 text-gray-900">{crypto.name}</p>
-                <p className="mt-1 truncate text-sm leading-5 text-gray-500">
+          <li key={crypto.id}>
+            <div>
+              <img src={crypto.image} alt={crypto.name} />
+              <div>
+                <p >{crypto.name}</p>
+                <p>
                   {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })} - Amount: {crypto.amount}
                 </p>
               </div>
             </div>
-            <div className="mt-1 text-s leading-5 text-gray-500">
+            <div>
               <span>
                 {/* Aquí implementas la lógica para cambiar el color basado en alguna condición, si es necesario */}
                 <span>
