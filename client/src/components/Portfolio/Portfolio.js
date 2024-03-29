@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal'; // Asegúrate de crear este componente
 import Header from '../../Header'
 import '../Portfolio/portfolio.css'
@@ -16,7 +15,7 @@ const Portfolio = () => {
   const [selectedCryptoId, setSelectedCryptoId] = useState('');
   const [selectedCryptoPrice, setSelectedCryptoPrice] = useState(0);
   const [amount, setAmount] = useState(1); // Estado para almacenar la cantidad especificada
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     const now = new Date().getTime();
@@ -92,16 +91,10 @@ const Portfolio = () => {
     }
   };
   
-      // Función para manejar el evento de clic en el botón de retroceso
-      const handleGoBack = () => {
-        navigate(-1); // Navega hacia atrás en el historial del navegador
-      };
-
-
   return (
     <div className="portfolio-container">
       {/* <button onClick={handleGoBack}>Volver atrás</button> Botón para ir hacia atrás */}
-      <Header handleGoback={handleGoBack}/>
+      <Header/>
 
 
       <ul role="list" className="crypto-list">

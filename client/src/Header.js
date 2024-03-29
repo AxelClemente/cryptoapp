@@ -1,76 +1,28 @@
-// import { Fragment } from 'react';
-import { Disclosure} from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import React, { useState } from 'react';
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import './components/Header/header.css'; // Ajusta la ruta según tu estructura de archivos
 
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
 
-const navigation = [
-  { name: 'Bitforecast', href: '/HomePage2', current: true },
-  { name: 'Holdings', href: '/holdings', current: false },
-  { name: 'Markets', href: '/portfolio', current: false },
-  { name: 'Dummy', href: '/samplePortfolio', current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
-
-export default function Header({ handleGoback }) {
-    // console.log(handleGoback)
   return (
-    <Disclosure as="nav" className="bg-custom-black">
-      
-      
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-              {/* Mobile menu button */}
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-black hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                    {open ? (
-                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                </Disclosure.Button>
-
-              </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
-                  {/* Logo */}
-                </div>
-                <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
-                    {/* Navigation items */}
-                    {navigation.map((item) => item.name === 'Bitforecast' ? (
-                        <button
-                          key={item.name}
-                          onClick={handleGoback} // Usar directamente handleGoBack
-                          className=" text-white hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                          {item.name}
-                        </button>
-                      ) : (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current ? 'bg-gray-900 text-white' : 'text-white hover:bg-white hover:text-black',
-                            'px-3 py-2 rounded-md text-sm font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                  </div>
-                </div>
-              </div>
-              {/* Profile dropdown */}
-            </div>
-          </div>
-        </>
-      )}
-    </Disclosure>
+    <nav className={`header ${isOpen ? 'open' : ''}`}>
+      <div className='header-content'>
+        <div className="logo">
+          <img src="logodef.png" alt="Logo" />
+        </div>
+        <div className="icons">
+          <MagnifyingGlassIcon className="icon" aria-hidden="true" />
+          <Bars3Icon className="icon bars-icon" onClick={() => setIsOpen(true)} aria-hidden="true" />
+          <XMarkIcon className="icon x-icon" onClick={() => setIsOpen(false)} aria-hidden="true" />
+        </div>
+      </div>
+      <div className="menu">
+        <a href="/HomePage2" className="menu-item">Home</a>
+        <a href="/holdings" className="menu-item">Holdings</a>
+        <a href="/portfolio" className="menu-item">Markets</a>
+        <a href="/samplePortfolio" className="menu-item">Portfolio</a>
+      </div>
+    </nav>
   );
 }

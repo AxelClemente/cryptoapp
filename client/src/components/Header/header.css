@@ -1,0 +1,110 @@
+/* Asegura que todo incluya el padding y el borde en el ancho total */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  .header {
+    background-color: #fff; /* Fondo blanco */ 
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex; /* Asegura flexbox para el alineamiento */
+    align-items: center;
+    padding: 8px; /* Reduce el padding general */
+    position: fixed;
+    width: 100%;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Asegura que el contenido use todo el ancho */
+  }
+  
+  .header .logo img {
+    height: 50px; /* Ajusta la altura de tu logo */
+    width: auto; /* Mantiene la relación de aspecto */
+  }
+  
+  .icons {
+    display: flex;
+    margin-top: 1rem;
+  }
+  
+  .icon, .iconx {
+    width: 1.5rem; /* Tamaño adecuado para los iconos */
+    height: 1.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  
+  .iconx {
+    color: #000; /* Asegura visibilidad contra fondo claro */
+  }
+  
+  .menu {
+    display: none; /* Inicialmente no se muestra el menú */
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s;
+    z-index: -1; /* Asegura que el menú no supere otros elementos */
+  }
+  
+  /* Muestra el menú cuando 'isOpen' es true */
+  .header.open .menu {
+    display: flex;
+    z-index: 999;
+  }
+  
+  .menu-item {
+    color: #fff;
+    margin: 0.5rem 0;
+    font-size: 2.25rem;
+    text-decoration: none;
+    font-weight: 300;
+  }
+  
+  /* Resto de estilos... */
+  
+  .icon.bars-icon {
+    display: block; /* Asegura que este icono esté siempre visible */
+  }
+  
+  .icon.x-icon {
+    display: none; /* Oculta inicialmente el icono X */
+  }
+  
+  /* Cuando el menú está abierto, muestra el icono X y oculta el icono de menú */
+  .header.open .icon.bars-icon {
+    display: none;
+  }
+  
+  .header.open .icon.x-icon {
+    display: block; /* Muestra el icono X cuando el menú está abierto */
+    color: #ffffff; /* Asegura visibilidad contra fondo claro */
+  }
+  
+  /* Animación para el menú */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Media queries para ajustes en móviles */
+  @media (max-width: 640px) {
+    .header-content {
+      padding: 8px; /* Ajusta el padding para móviles */
+    }
+  
+    .icon, .iconx {
+      margin-right: 0.5rem; /* Reduce el margen para móviles */
+      z-index: 1100;
+      
+    }
+  }
+  

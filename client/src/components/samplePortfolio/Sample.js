@@ -94,7 +94,7 @@ function SamplePortfolio() {
               <div className="crypto-info">
                 <p className="crypto-name" >{crypto.name}</p>
                 <p className="crypto-details">
-                  {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })} - Amount: {crypto.amount}
+                  {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })} - {crypto.amount}
                 </p>
               </div>
             </div>

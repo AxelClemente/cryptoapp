@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-top: 10rem;
   }
   
   .holdings-image {
@@ -101,6 +101,10 @@
       .crypto-item {
         flex-wrap: wrap; /* Apila los elementos verticalmente en dispositivos móviles */
         justify-content: space-between; /* Alinea los elementos a la izquierda */
+      }
+
+      .crypto-details {
+        margin-left: 1rem;
       }
     
       .crypto-value {
