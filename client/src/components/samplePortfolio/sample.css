@@ -1,0 +1,112 @@
+.container {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .total-holdings {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .holdings-image {
+    height: 48px;
+    width: 48px;
+    margin-right: 8px; /* Agregar espacio entre la imagen y el texto */
+    border-radius: 50%; /* Hacer la imagen redonda */
+  }
+  
+  .total-value {
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+    flex-grow: 1; /* Asegurarse de que el texto del valor total tenga espacio para crecer */
+  }
+  
+  .crypto-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 16px; /* Espacio antes de la lista de criptomonedas */
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .crypto-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0; /* Espaciado vertical dentro de cada elemento */
+  }
+  
+  .crypto-image {
+    height: 32px;
+    width: 32px;
+    flex-shrink: 0; /* Asegurarse de que la imagen no se encoja */
+    border-radius: 50%;
+    margin-right: 8px; /* Espacio entre la imagen y el texto */
+  }
+  
+  .crypto-info {
+    flex-grow: 1;
+  }
+  
+  .crypto-name {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+  }
+  
+  .crypto-details {
+    font-size: 0.75rem; /* 12px */
+    color: #6b7280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .crypto-value {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    text-align: right;
+  }
+  
+  @media (min-width: 768px) {
+      .container {
+        margin-left: 210px;
+        margin-right: 210px;
+      }
+    
+      .holdings-image {
+        height: 64px;
+        width: 64px;
+      }
+    
+      .total-value {
+        font-size: 18px;
+      }
+    
+      .crypto-image {
+        height: 48px;
+        width: 48px;
+      }
+    
+      .crypto-name {
+        font-size: 16px;
+      }
+    
+      .crypto-details {
+        font-size: 14px;
+      }
+  }
+  
+  @media (max-width: 640px) {
+      .crypto-item {
+        flex-wrap: wrap; /* Apila los elementos verticalmente en dispositivos móviles */
+        justify-content: space-between; /* Alinea los elementos a la izquierda */
+      }
+    
+      .crypto-value {
+        padding-top: 8px; /* Agrega un poco de espacio encima del valor para separarlo del nombre/info */
+        align-self: stretch; /* Hace que .crypto-value ocupe el ancho completo */
+        text-align: left; /* Alinea el texto a la izquierda */
+        margin-right: 2.8rem;
+      }
+  }

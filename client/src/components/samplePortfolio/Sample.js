@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../../Header';
+import '../samplePortfolio/sample.css'
 
 function SamplePortfolio() {
   const [cryptos, setCryptos] = useState([]);
@@ -14,7 +15,7 @@ function SamplePortfolio() {
     { id: 'ronin', name: 'Ronin', amount: 3732 },
     { id: 'ethereum', name: 'Ethereum', amount: 2.067 },
     { id: 'usd-coin', name: 'USDC', amount: 2864 },
-    { id: 'pixel', name: 'Pixel', amount: 1157 },
+    { id: 'pixel', name: 'Pixel', amount: 2314 },
     { id: 'matic-network', name: 'Polygon', amount: 794 },
     { id: 'crypto-com-chain', name: 'Cronos', amount: 5093 },
     { id: 'avalanche-2', name: 'Avalanche', amount: 12.898 },
@@ -76,28 +77,28 @@ function SamplePortfolio() {
   }
 
   return (
-    <div>
+    <div className="container">
       <Header />
       {/* Muestra el valor total */}
-      <div>
-        <img src="/bolsa1.png" alt="Total Holdings"/>
-        <div>
+      <div className="total-holdings">
+        <img className="holdings-image" src="/bolsa1.png" alt="Total Holdings"/>
+        <div className="total-value">
           Total: {totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
         </div>
       </div>
-      <ul>
+      <ul className="crypto-list">
         {cryptos.map((crypto) => (
-          <li key={crypto.id}>
+          <li key={crypto.id} className="crypto-item">
             <div>
-              <img src={crypto.image} alt={crypto.name} />
-              <div>
-                <p >{crypto.name}</p>
-                <p>
+              <img className="crypto-image" src={crypto.image} alt={crypto.name} />
+              <div className="crypto-info">
+                <p className="crypto-name" >{crypto.name}</p>
+                <p className="crypto-details">
                   {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })} - Amount: {crypto.amount}
                 </p>
               </div>
             </div>
-            <div>
+            <div className="crypto-value">
               <span>
                 {/* Aquí implementas la lógica para cambiar el color basado en alguna condición, si es necesario */}
                 <span>
