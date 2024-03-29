@@ -80,7 +80,7 @@ function SamplePortfolio() {
       <Header />
       {/* Muestra el valor total */}
       <div>
-        <img/>
+        <img src="/bolsa1.png" alt="Total Holdings"/>
         <div>
           Total: {totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
         </div>
