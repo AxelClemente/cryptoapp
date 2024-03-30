@@ -3,6 +3,12 @@
     display: flex;
     flex-direction: column;
   }
+
+  .crypto-qty {
+    color: #cbcbcc; /* Un gris estándar */
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+  }
   
   .total-holdings {
     display: flex;
@@ -66,6 +72,7 @@
     font-size: 0.875rem; /* 14px */
     font-weight: 600;
     text-align: right;
+    
   }
   
   @media (min-width: 768px) {
@@ -111,6 +118,7 @@
         padding-top: 8px; /* Agrega un poco de espacio encima del valor para separarlo del nombre/info */
         align-self: stretch; /* Hace que .crypto-value ocupe el ancho completo */
         text-align: left; /* Alinea el texto a la izquierda */
-        margin-right: 2.8rem;
+        margin-right: 3.8rem;
+        color:#009393 ;
       }
   }
