@@ -32,26 +32,69 @@ router.get('/markets',  async (req, res) => {
 
 
 /// Modifica la ruta existente para ajustarse al nuevo flujo
+// router.post('/add', async (req, res) => {
+//   const { userId, cryptoId, amount } = req.body; // Directamente usamos userId enviado por el cliente
+//   console.log('Solicitud recibida en /portfolio/add', req.body);
+
+//   try {
+//     console.log('Procediendo sin verificación de token de Google...');
+//     console.log('Usando ID de usuario directamente:', userId);
+
+//     // Buscando o creando la cartera para el usuario con el ID proporcionado
+//     let portfolio = await Portfolio.findOne({ userId: userId });
+//     if (!portfolio) {
+//       portfolio = new Portfolio({
+//           userId,
+//           cryptos: [{ id: cryptoId, amount }], // Asegúrate de usar id aquí también
+//         });
+//     } else {
+//       console.log('Cartera encontrada, agregando la criptomoneda...');
+//         portfolio.cryptos.push({ id: cryptoId, amount });
+//     }
+//     const updatedPortfolio = await portfolio.save();
+//     res.status(200).json(updatedPortfolio);
+//   } catch (error) {
+//     console.error('Error en /portfolio/add:', error);
+//     res.status(500).json({ message: "Error agregando cripto a la cartera", error: error.toString() });
+//   }
+// });
+
 router.post('/add', async (req, res) => {
-  const { userId, cryptoId, amount } = req.body; // Directamente usamos userId enviado por el cliente
+  // Asume que se envían 'dailyPrice' y 'source' en el cuerpo de la solicitud
+  const { userId, cryptoId, amount, dailyPrice, source } = req.body;
   console.log('Solicitud recibida en /portfolio/add', req.body);
+  // Verificación básica de los datos de entrada
+  if (!dailyPrice || !source) {
+    console.log('Faltan dailyPrice o source');
+    return res.status(400).json({ message: "Error: 'dailyPrice' y 'source' son campos requeridos." });
+  }
 
   try {
-    console.log('Procediendo sin verificación de token de Google...');
-    console.log('Usando ID de usuario directamente:', userId);
-
     // Buscando o creando la cartera para el usuario con el ID proporcionado
     let portfolio = await Portfolio.findOne({ userId: userId });
     if (!portfolio) {
       portfolio = new Portfolio({
-          userId,
-          cryptos: [{ id: cryptoId, amount }], // Asegúrate de usar id aquí también
-        });
+        userId,
+        cryptos: [{
+          id: cryptoId, // Asegúrate de que este campo corresponda al 'id' de la cripto
+          amount: Number(amount), // Convierte a número
+          dailyPrice, // Asegúrate de que estos nombres de campo coincidan con tu esquema
+          source
+        }]
+      });
     } else {
-      console.log('Cartera encontrada, agregando la criptomoneda...');
-        portfolio.cryptos.push({ id: cryptoId, amount });
+      portfolio.cryptos.push({
+        id: cryptoId,
+        amount: Number(amount),
+        dailyPrice,
+        source
+      });
     }
+
+    // Guardando la cartera actualizada en la base de datos
+    console.log('Portfolio a guardar joder:', portfolio);
     const updatedPortfolio = await portfolio.save();
+    console.log('Después de guardar:', updatedPortfolio);
     res.status(200).json(updatedPortfolio);
   } catch (error) {
     console.error('Error en /portfolio/add:', error);

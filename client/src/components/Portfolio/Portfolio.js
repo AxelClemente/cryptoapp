@@ -15,6 +15,8 @@ const Portfolio = () => {
   const [selectedCryptoId, setSelectedCryptoId] = useState('');
   const [selectedCryptoPrice, setSelectedCryptoPrice] = useState(0);
   const [amount, setAmount] = useState(1); // Estado para almacenar la cantidad especificada
+  const [source, setSource] = useState(''); // Nuevo estado para la fuente
+
   
 
   useEffect(() => {
@@ -78,13 +80,20 @@ const Portfolio = () => {
   
       const response = await axios.post(`${backendUrl}/portfolio/add`, {
         userId,
+        source,
         cryptoId: selectedCryptoId,
+        dailyPrice: selectedCryptoPrice,
         amount,
       }, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
   
       console.log("Cryptomonedas añadidas al portfolio", response.data);
+      console.log("Cryptomonedas añadidas al portfolio por el usuario:", userId);
+      console.log("Cryptomonedas añadidas al portfolio en el source:", source);
+      console.log("Cryptomonedas añadidas al portfolio por con el precio de:", selectedCryptoPrice);
+
+
       setShowModal(false); // Cierra el modal después de agregar
     } catch (error) {
       console.error('Error adding to portfolio', error);
@@ -142,11 +151,14 @@ const Portfolio = () => {
       {showModal && (
         <Modal 
         onClose={() => setShowModal(false)}
-        onConfirm={handleAddToPortfolio}
         amount={amount}
         setAmount={setAmount}
         currentPrice={selectedCryptoPrice} // Pasa el precio actual al modal
         cryptoName={selectedCryptoId} // Asume que tienes una variable o estado para el nombre
+        source={source} // Pasamos la fuente al Modal
+        setSource={setSource} // Pasamos la función para actualizar la fuente
+        onConfirm={handleAddToPortfolio}
+
 
       />
     )}

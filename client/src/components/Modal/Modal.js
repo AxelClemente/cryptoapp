@@ -89,7 +89,9 @@
 import React from 'react';
 import '../Modal/modal.css'
 
-const Modal = ({ onClose, onConfirm, amount, setAmount, currentPrice, cryptoName }) => {
+const Modal = ({ onClose, onConfirm, amount, setAmount, currentPrice, cryptoName,
+  source,
+  setSource}) => {
   // Función para capitalizar la primera letra
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -98,6 +100,10 @@ const Modal = ({ onClose, onConfirm, amount, setAmount, currentPrice, cryptoName
   const handleSubmit = (event) => {
     event.preventDefault();
     onConfirm();
+  };
+
+  const handleSourceChange = (event) => {
+    setSource(event.target.value); // Actualiza el estado 'source' con el nuevo valor seleccionado
   };
 
   const totalPrice = currentPrice * amount;
@@ -146,6 +152,15 @@ const Modal = ({ onClose, onConfirm, amount, setAmount, currentPrice, cryptoName
                 value={totalPrice.toFixed(2).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
                 readOnly
               />
+            </div>
+            <div className="form-group">
+              <label htmlFor="source">Source</label>
+              <select name="source" id="source" value={source} onChange={handleSourceChange}>
+                <option value="binance">Binance</option>
+                <option value="crypto.com">Crypto.com</option>
+                <option value="metamask">Metamask</option>
+                {/* Agrega más opciones según sea necesario */}
+              </select>
             </div>
             <div className="modal-actions">
               <button type="button" className="button cancel" onClick={onClose}>

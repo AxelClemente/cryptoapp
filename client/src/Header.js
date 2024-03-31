@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
 import './components/Header/header.css'; // Ajusta la ruta según tu estructura de archivos
 
 export default function Header() {
@@ -9,10 +9,10 @@ export default function Header() {
     <nav className={`header ${isOpen ? 'open' : ''}`}>
       <div className='header-content'>
         <div className="logo">
-          <img src="logodef.png" alt="Logo" />
+          <img src="logo1.png" alt="Logo" />
         </div>
         <div className="icons">
-          <MagnifyingGlassIcon className="icon" aria-hidden="true" />
+          {/* <MagnifyingGlassIcon className="icon" aria-hidden="true" /> */}
           <Bars3Icon className="icon bars-icon" onClick={() => setIsOpen(true)} aria-hidden="true" />
           <XMarkIcon className="icon x-icon" onClick={() => setIsOpen(false)} aria-hidden="true" />
         </div>
