@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './holdings.css';
 import axios from 'axios';
 import Header from '../../Header';
-import { useNavigate } from 'react-router-dom';
 import '../Holdings/holdings.css'
 
 function Holdings() {
   const [cryptos, setCryptos] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Nuevo estado para controlar la carga
   const [totalHoldings, setTotalHoldings] = useState(0);
-  const navigate = useNavigate();
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
 
   useEffect(() => {
     const fetchPortfolioAndMarketData = async () => {
@@ -74,27 +68,23 @@ function Holdings() {
   }
 
   return (
-    <div className="holdings-container">
-      <Header handleGoback={handleGoBack}/>
+    <div className="container">
+      <Header/>
+        
+            <div className="total-holdings" >
+              <img className="holdings-image" src="logo1.png" alt="Holdings" />
+              <div className="total-value" >                               
+                 Total: {totalHoldings.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}               
+              </div>
+            </div>       
       <ul className="crypto-list">
-      <li className="crypto-item holdings-summary">
-          <div className="crypto-info" >
-            <img className="crypto-image" src="logo1.png" alt="Holdings" />
-            <div >
-              <p className="crypto-name">Holdings</p>
-              <p className="crypto-price">
-                {totalHoldings.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
-              </p>
-            </div>
-          </div>
-        </li>
         {cryptos.map((crypto) => (
           <li key={crypto.id} className="crypto-item">
-            <div className="crypto-info">
+            <div>
               <img className="crypto-image" src={crypto.image} alt={crypto.name} />
-              <div >
+              <div className="crypto-info">
                 <p className="crypto-name">{crypto.name}</p>
-                <p className="crypto-price">
+                <p className="crypto-details">
                   {crypto.current_price > 0 
                     ? crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })
                     : 'Precio no disponible'}
