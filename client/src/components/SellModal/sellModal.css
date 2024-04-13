@@ -1,0 +1,93 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* Fondo oscuro para mayor enfoque en el modal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* Asegurándose de que el modal siempre esté en primer plano */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados para un look moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar el modal */
+    width: 90%; /* Ancho máximo para asegurar que se vea bien en móviles */
+    max-width: 500px; /* Máximo ancho del modal */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px; /* Espacio entre cabecera y cuerpo del modal */
+}
+
+.modal-title {
+    font-size: 1.5rem; /* Título grande para fácil lectura */
+    color: #333; /* Color oscuro para contraste con el fondo */
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666; /* Color suave para el botón de cerrar */
+}
+
+.modal-body {
+    font-size: 1rem; /* Tamaño de fuente estándar para el contenido */
+}
+
+.form-group {
+    margin-bottom: 10px; /* Espacio entre form groups para no saturar visualmente */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
+    color: #333; /* Color oscuro para los textos para facilitar la lectura */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    box-sizing: border-box; /* Box sizing para que padding no afecte el ancho */
+}
+
+.button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s; /* Transición suave para el background */
+}
+
+.button.cancel {
+    background-color: #ccc; /* Botón cancelar con un color neutro */
+}
+
+.button.submit {
+    background-color: #f7931a; /* Botón confirmar con un color destacado */
+    color: white; /* Texto blanco para contraste */
+}
+
+@media (min-width: 768px) {
+    .modal-content {
+        width: 80%; /* Ancho más estrecho en escritorios para mejor estética */
+        max-width: 600px; /* Máximo ancho más grande en escritorio */
+    }
+
+    .button {
+        padding: 15px 30px;
+        font-size: 1.25rem; /* Botones más grandes en escritorio */
+    }
+}

@@ -38,17 +38,17 @@ const Portfolio = () => {
   
     // Actualiza la solicitud para obtener datos de tu backend
     const fetchData = async () => {
+      const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000"; // Uso de la URL de backend desde variable de entorno o localhost por defecto
       try {
-        // Asume que tienes un endpoint en tu backend /portfolio/markets
-        const response = await axios.get(`${process.env.REACT_APP_URL}/portfolio/markets`,{headers: { 'Authorization': `Bearer ${token}` }});        
-        console.log("Respuesta del servidor:", response); // Aquí se imprime la respuesta del servidor
+        const response = await axios.get(`${backendUrl}/portfolio/markets`, { headers: { 'Authorization': `Bearer ${token}` }});
+        console.log("Respuesta del servidor:", response); // Impresión de la respuesta del servidor
         setCryptos(response.data);
         setLastFetchTime(now);
       } catch (error) {
         console.error('Error fetching data from the API', error);
       }
     };
-  
+
     fetchData();
   }, [cryptos, lastFetchTime]);
 

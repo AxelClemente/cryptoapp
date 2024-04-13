@@ -124,13 +124,24 @@
 
     .crypto-details {
       margin-left: 1rem;
+      margin-right: 2rem;
     }
+
+    .sell-button, .analyze-button {
+      padding: 8px 16px;
+      margin: 4px;
+      font-size: 0.875rem;
+      background-color: #f7931a;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .analyze-button {
+      background-color: #4CAF50; /* Green for analyze to differentiate from sell */
+    }
+    
   
-    .crypto-value {
-      padding-top: 8px; /* Agrega un poco de espacio encima del valor para separarlo del nombre/info */
-      align-self: stretch; /* Hace que .crypto-value ocupe el ancho completo */
-      text-align: left; /* Alinea el texto a la izquierda */
-      margin-right: 3.8rem;
-      color:#009393 ;
-    }
+
+    
 }

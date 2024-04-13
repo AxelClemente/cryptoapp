@@ -31,34 +31,6 @@ router.get('/markets',  async (req, res) => {
 });
 
 
-/// Modifica la ruta existente para ajustarse al nuevo flujo
-// router.post('/add', async (req, res) => {
-//   const { userId, cryptoId, amount } = req.body; // Directamente usamos userId enviado por el cliente
-//   console.log('Solicitud recibida en /portfolio/add', req.body);
-
-//   try {
-//     console.log('Procediendo sin verificación de token de Google...');
-//     console.log('Usando ID de usuario directamente:', userId);
-
-//     // Buscando o creando la cartera para el usuario con el ID proporcionado
-//     let portfolio = await Portfolio.findOne({ userId: userId });
-//     if (!portfolio) {
-//       portfolio = new Portfolio({
-//           userId,
-//           cryptos: [{ id: cryptoId, amount }], // Asegúrate de usar id aquí también
-//         });
-//     } else {
-//       console.log('Cartera encontrada, agregando la criptomoneda...');
-//         portfolio.cryptos.push({ id: cryptoId, amount });
-//     }
-//     const updatedPortfolio = await portfolio.save();
-//     res.status(200).json(updatedPortfolio);
-//   } catch (error) {
-//     console.error('Error en /portfolio/add:', error);
-//     res.status(500).json({ message: "Error agregando cripto a la cartera", error: error.toString() });
-//   }
-// });
-
 router.post('/add', async (req, res) => {
   // Asume que se envían 'dailyPrice' y 'source' en el cuerpo de la solicitud
   const { userId, cryptoId, amount, dailyPrice, source } = req.body;
@@ -99,6 +71,44 @@ router.post('/add', async (req, res) => {
   } catch (error) {
     console.error('Error en /portfolio/add:', error);
     res.status(500).json({ message: "Error agregando cripto a la cartera", error: error.toString() });
+  }
+});
+
+router.delete('/sell', async (req, res) => {
+  const { userId, cryptoId, amount } = req.body;  // 'amount' es la cantidad de cripto que el usuario desea vender
+
+  if (!userId || !cryptoId || amount === undefined) {
+    return res.status(400).json({ message: "Error: Todos los campos (userId, cryptoId, amount) son requeridos." });
+  }
+
+  try {
+    let portfolio = await Portfolio.findOne({ userId: userId });
+    if (!portfolio) {
+      return res.status(404).json({ message: "Cartera no encontrada." });
+    }
+
+    const cryptoIndex = portfolio.cryptos.findIndex(c => c.id === cryptoId);
+    if (cryptoIndex === -1) {
+      return res.status(404).json({ message: "Criptomoneda no encontrada en la cartera." });
+    }
+
+    // Verificar si la cantidad a vender es menor o igual a la cantidad en cartera
+    if (portfolio.cryptos[cryptoIndex].amount < amount) {
+      return res.status(400).json({ message: "No hay suficientes unidades de la criptomoneda para vender." });
+    }
+
+    // Actualizar la cantidad o eliminar la cripto si la cantidad a vender es igual a la en cartera
+    if (portfolio.cryptos[cryptoIndex].amount === amount) {
+      portfolio.cryptos.splice(cryptoIndex, 1);  // Elimina la cripto del array
+    } else {
+      portfolio.cryptos[cryptoIndex].amount -= amount;  // Reduce la cantidad existente
+    }
+
+    const updatedPortfolio = await portfolio.save();
+    res.status(200).json({ message: "Venta realizada exitosamente.", updatedPortfolio });
+  } catch (error) {
+    console.error('Error al vender la criptomoneda:', error);
+    res.status(500).json({ message: "Error interno al vender la criptomoneda", error: error.toString() });
   }
 });
 
