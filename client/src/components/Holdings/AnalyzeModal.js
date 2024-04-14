@@ -9,7 +9,7 @@ const AnalyzeModal = ({ onClose, averagePrice, crypto }) => {
           <button className="close-button" onClick={onClose}>&times;</button>
         </div>
         <div className="modal-body">
-          <p>El promedio de compra de {crypto.name} es {averagePrice.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+          <p>Tu promedio de compra de {crypto.name} es {averagePrice.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
         </div>
       </div>
     </div>

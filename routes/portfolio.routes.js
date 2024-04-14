@@ -64,9 +64,9 @@ router.post('/add', async (req, res) => {
     }
 
     // Guardando la cartera actualizada en la base de datos
-    console.log('Portfolio a guardar joder:', portfolio);
+    // console.log('Portfolio a guardar joder:', portfolio);
     const updatedPortfolio = await portfolio.save();
-    console.log('Después de guardar:', updatedPortfolio);
+    // console.log('Después de guardar:', updatedPortfolio);
     res.status(200).json(updatedPortfolio);
   } catch (error) {
     console.error('Error en /portfolio/add:', error);

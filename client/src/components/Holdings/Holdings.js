@@ -1,43 +1,49 @@
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import Header from '../../Header';
-// import SellModal from '../SellModal/SellModal'; // Importamos el componente modal de venta
-// import '../Holdings/holdings.css'
-
+// import SellModal from '../SellModal/SellModal';
+// import AnalyzeModal from '../Holdings/AnalyzeModal';  // Asegúrate que la ruta de importación es correcta
+// import '../Holdings/holdings.css';
 
 // function Holdings() {
 //   const [cryptos, setCryptos] = useState([]);
 //   const [isLoading, setIsLoading] = useState(true);
 //   const [totalHoldings, setTotalHoldings] = useState(0);
 //   const [showSellModal, setShowSellModal] = useState(false);
+//   const [showAnalyzeModal, setShowAnalyzeModal] = useState(false);
 //   const [selectedCrypto, setSelectedCrypto] = useState({});
+//   const [averagePrice, setAveragePrice] = useState(0);
 
 //   useEffect(() => {
 //     const fetchPortfolioAndMarketData = async () => {
 //       setIsLoading(true);
-//       try {
-//         const token = localStorage.getItem('token');
-//         if (!token) {
-//           console.error('No token found');
-//           setIsLoading(false);
-//           return;
-//         }
-//         const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
-//         const config = { headers: { Authorization: `Bearer ${token}` } };
-        
-//         const portfolioResponse = await axios.get(`${backendUrl}/api/holdings`, config);
-//         if (portfolioResponse.data.cryptos && portfolioResponse.data.cryptos.length > 0) {
-//           const marketResponse = await axios.get(`${backendUrl}/portfolio/markets`, config);
-//           const portfolioIDs = portfolioResponse.data.cryptos.map(crypto => crypto.id);
-//           const filteredMarketData = marketResponse.data.filter(crypto => portfolioIDs.includes(crypto.id));
-//           const enrichedCryptos = portfolioResponse.data.cryptos.map(crypto => {
-//             const marketCrypto = filteredMarketData.find(m => m.id === crypto.id);
-//             return { ...crypto, ...marketCrypto };
-//           });
+//       const token = localStorage.getItem('token');
+//       if (!token) {
+//         console.error('No token found');
+//         setIsLoading(false);
+//         return;
+//       }
+//       const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
+//       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-//           setTotalHoldings(enrichedCryptos.reduce((acc, crypto) => acc + (crypto.current_price * crypto.amount), 0));
-//           setCryptos(enrichedCryptos);
-//         }
+//       try {
+//         const [portfolioRes, marketRes] = await Promise.all([
+//           axios.get(`${backendUrl}/api/holdings`, config),
+//           axios.get(`${backendUrl}/portfolio/markets`, config)
+//         ]);
+//         const cryptosData = portfolioRes.data.cryptos.reduce((acc, crypto) => {
+//           const marketCrypto = marketRes.data.find(m => m.id === crypto.id);
+//           const existing = acc.find(c => c.id === crypto.id);
+//           if (existing) {
+//             existing.amount += crypto.amount;
+//           } else {
+//             acc.push({ ...crypto, ...marketCrypto });
+//           }
+//           return acc;
+//         }, []);
+
+//         setCryptos(cryptosData);
+//         setTotalHoldings(cryptosData.reduce((acc, crypto) => acc + (crypto.current_price * crypto.amount), 0));
 //       } catch (error) {
 //         console.error('Error fetching data:', error);
 //       } finally {
@@ -53,32 +59,38 @@
 //     setShowSellModal(true);
 //   };
 
+//   const handleOpenAnalyzeModal = (crypto) => {
+//     setSelectedCrypto(crypto);
+//     const relevantEntries = cryptos.filter(c => c.id === crypto.id);
+//     const totalPaid = relevantEntries.reduce((acc, curr) => acc + (curr.dailyPrice * curr.amount), 0);
+//     const totalAmount = relevantEntries.reduce((acc, curr) => acc + curr.amount, 0);
+//     const average = totalAmount > 0 ? (totalPaid / totalAmount) : 0;
+//     setAveragePrice(average);
+//     setShowAnalyzeModal(true);
+//   };
+
 //   const handleSellCrypto = async (amountToSell) => {
 //     const token = localStorage.getItem('token');
-//     const userId = localStorage.getItem('userId'); // Asegúrate de que el userId se almacena en localStorage al iniciar sesión
+//     const userId = localStorage.getItem('userId');
 //     const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
 
 //     try {
-//         await axios.delete(`${backendUrl}/portfolio/sell`, {
-//             data: { userId, cryptoId: selectedCrypto.id, amount: amountToSell },
-//             headers: { Authorization: `Bearer ${token}` }
-//         });
-
-//         setShowSellModal(false);
-//         // Actualizar el estado local para reflejar el cambio
-//         setCryptos(cryptos.map(crypto => {
-//             if (crypto.id === selectedCrypto.id) {
-//                 const updatedAmount = crypto.amount - amountToSell;
-//                 return { ...crypto, amount: updatedAmount > 0 ? updatedAmount : 0 };
-//             }
-//             return crypto;
-//         }));
+//       await axios.delete(`${backendUrl}/portfolio/sell`, {
+//         data: { userId, cryptoId: selectedCrypto.id, amount: amountToSell },
+//         headers: { Authorization: `Bearer ${token}` }
+//       });
+//       setCryptos(cryptos.map(crypto => {
+//         if (crypto.id === selectedCrypto.id) {
+//           return { ...crypto, amount: crypto.amount - amountToSell };
+//         }
+//         return crypto;
+//       }).filter(crypto => crypto.amount > 0));
+//       setShowSellModal(false);
 //     } catch (error) {
-//         console.error('Error selling crypto:', error);
-//         alert("Failed to sell crypto: " + error.response.data.message);
+//       console.error('Error selling crypto:', error);
+//       alert("Failed to sell crypto: " + error.response.data.message);
 //     }
-// };
-
+//   };
 
 //   if (isLoading) {
 //     return <div className="loading">Cargando...</div>;
@@ -101,19 +113,16 @@
 //               <div className="crypto-info">
 //                 <p className="crypto-name">{crypto.name}</p>
 //                 <p className="crypto-details">
-//                   {crypto.current_price > 0 
-//                     ? crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })
+//                   {console.log("Current Price:", crypto.current_price, "Amount:", crypto.amount)}
+//                   {crypto.current_price > 0 && crypto.amount > 0
+//                     ? `${crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })} (${crypto.amount} QTY)`
 //                     : 'Precio no disponible'}
-//                   <span className="crypto-qty"> QTY: {crypto.amount}</span>
 //                 </p>
 //               </div>
 //             </div>
 //             <div>
-//               <span className="rounded-md px-2 py-1 text-xs font-medium ml-2  hover:text-blue-700 cursor-pointer"
-//                     style={{ backgroundColor: '#f7931a', color: '#ffffff', borderColor: 'rgba(247,147,26,0.4)' }}
-//                     onClick={() => handleOpenSellModal(crypto)}>
-//                 Vender
-//               </span>
+//               <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Vender</button>
+//               <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analizar</button>
 //             </div>
 //           </li>
 //         ))}
@@ -125,9 +134,15 @@
 //           crypto={selectedCrypto}
 //         />
 //       )}
+//       {showAnalyzeModal && (
+//         <AnalyzeModal
+//           onClose={() => setShowAnalyzeModal(false)}
+//           averagePrice={averagePrice}
+//           crypto={selectedCrypto}
+//         />
+//       )}
 //     </div>
 //   );
-  
 // }
 
 // export default Holdings;
@@ -159,21 +174,35 @@ function Holdings() {
       }
       const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      
-      const portfolioResponse = await axios.get(`${backendUrl}/api/holdings`, config);
-      if (portfolioResponse.data.cryptos && portfolioResponse.data.cryptos.length > 0) {
-        const marketResponse = await axios.get(`${backendUrl}/portfolio/markets`, config);
-        const portfolioIDs = portfolioResponse.data.cryptos.map(crypto => crypto.id);
-        const filteredMarketData = marketResponse.data.filter(crypto => portfolioIDs.includes(crypto.id));
-        const enrichedCryptos = portfolioResponse.data.cryptos.map(crypto => {
-          const marketCrypto = filteredMarketData.find(m => m.id === crypto.id);
-          return { ...crypto, ...marketCrypto };
-        });
 
-        setTotalHoldings(enrichedCryptos.reduce((acc, crypto) => acc + (crypto.current_price * crypto.amount), 0));
-        setCryptos(enrichedCryptos);
+      try {
+        const [portfolioRes, marketRes] = await Promise.all([
+          axios.get(`${backendUrl}/api/holdings`, config),
+          axios.get(`${backendUrl}/portfolio/markets`, config)
+        ]);
+        const cryptosData = portfolioRes.data.cryptos.reduce((acc, crypto) => {
+          const marketCrypto = marketRes.data.find(m => m.id === crypto.id);
+          const existing = acc.find(c => c.id === crypto.id);
+          if (existing) {
+            existing.amount += crypto.amount;
+            existing.total_value += crypto.amount * (marketCrypto ? marketCrypto.current_price : 0);
+          } else {
+            acc.push({
+              ...crypto,
+              ...marketCrypto,
+              total_value: crypto.amount * (marketCrypto ? marketCrypto.current_price : 0)
+            });
+          }
+          return acc;
+        }, []);
+
+        setCryptos(cryptosData);
+        setTotalHoldings(cryptosData.reduce((acc, crypto) => acc + crypto.total_value, 0));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     fetchPortfolioAndMarketData();
@@ -186,16 +215,12 @@ function Holdings() {
 
   const handleOpenAnalyzeModal = (crypto) => {
     setSelectedCrypto(crypto);
-    calculateAveragePrice(crypto.id);
-    setShowAnalyzeModal(true);
-  };
-
-  const calculateAveragePrice = (cryptoId) => {
-    const relevantEntries = cryptos.filter(c => c.id === cryptoId);
+    const relevantEntries = cryptos.filter(c => c.id === crypto.id);
     const totalPaid = relevantEntries.reduce((acc, curr) => acc + (curr.dailyPrice * curr.amount), 0);
     const totalAmount = relevantEntries.reduce((acc, curr) => acc + curr.amount, 0);
     const average = totalAmount > 0 ? (totalPaid / totalAmount) : 0;
     setAveragePrice(average);
+    setShowAnalyzeModal(true);
   };
 
   const handleSellCrypto = async (amountToSell) => {
@@ -208,15 +233,14 @@ function Holdings() {
         data: { userId, cryptoId: selectedCrypto.id, amount: amountToSell },
         headers: { Authorization: `Bearer ${token}` }
       });
-
-      setShowSellModal(false);
       setCryptos(cryptos.map(crypto => {
         if (crypto.id === selectedCrypto.id) {
-          const updatedAmount = crypto.amount - amountToSell;
-          return { ...crypto, amount: updatedAmount > 0 ? updatedAmount : 0 };
+          const newAmount = crypto.amount - amountToSell;
+          return { ...crypto, amount: newAmount, total_value: newAmount * crypto.current_price };
         }
         return crypto;
-      }));
+      }).filter(crypto => crypto.amount > 0));
+      setShowSellModal(false);
     } catch (error) {
       console.error('Error selling crypto:', error);
       alert("Failed to sell crypto: " + error.response.data.message);
@@ -238,22 +262,21 @@ function Holdings() {
       </div>
       <ul className="crypto-list">
         {cryptos.map((crypto) => (
-          <li key={crypto._id} className="crypto-item">
+          <li key={crypto.id} className="crypto-item">
             <div>
               <img className="crypto-image" src={crypto.image} alt={crypto.name} />
               <div className="crypto-info">
                 <p className="crypto-name">{crypto.name}</p>
                 <p className="crypto-details">
-                  {crypto.current_price > 0 
-                    ? crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })
-                    : 'Precio no disponible'}
+                  {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
                   <span className="crypto-qty"> QTY: {crypto.amount}</span>
                 </p>
+                <p className="crypto-value">Total: ${crypto.total_value.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
               </div>
             </div>
             <div>
-              <span className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Vender</span>
-              <span className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analizar</span>
+              <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Vender</button>
+              <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analizar</button>
             </div>
           </li>
         ))}
@@ -277,3 +300,5 @@ function Holdings() {
 }
 
 export default Holdings;
+
+
