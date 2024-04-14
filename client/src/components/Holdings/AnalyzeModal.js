@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AnalyzeModal = ({ onClose, averagePrice, crypto }) => {
+const AnalyzeModal = ({ onClose, averagePrice, crypto, sources }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -10,6 +10,12 @@ const AnalyzeModal = ({ onClose, averagePrice, crypto }) => {
         </div>
         <div className="modal-body">
           <p>Tu promedio de compra de {crypto.name} es {averagePrice.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+          <p>Están resguardados en:</p>
+          <ul>
+            {sources.map(source => (
+              <li key={source.source}>{source.source.charAt(0).toUpperCase() + source.source.slice(1)}: {source.amount} unidades</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -17,4 +23,6 @@ const AnalyzeModal = ({ onClose, averagePrice, crypto }) => {
 };
 
 export default AnalyzeModal;
+
+
 
