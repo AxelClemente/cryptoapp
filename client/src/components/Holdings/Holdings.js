@@ -167,6 +167,7 @@ function Holdings() {
           averagePrice={averagePrice}
           crypto={selectedCrypto}
           sources={sourceDetails}
+          cryptos={cryptos}  // Pasando el estado completo de cryptos al modal
         />
       )}
     </div>
