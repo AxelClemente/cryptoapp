@@ -21,36 +21,42 @@ function Holdings() {
       const token = localStorage.getItem('token');
       const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
       const config = { headers: { Authorization: `Bearer ${token}` } };
-
+  
       if (!token) {
         console.error('No token found');
         setIsLoading(false);
         return;
       }
-
+  
       try {
         const [portfolioRes, marketRes] = await Promise.all([
           axios.get(`${backendUrl}/api/holdings`, config),
           axios.get(`${backendUrl}/portfolio/markets`, config)
         ]);
+  
+        const marketDataById = new Map(marketRes.data.map(item => [item.id, item]));
+  
         const cryptosData = portfolioRes.data.cryptos.reduce((acc, crypto) => {
-          const marketCrypto = marketRes.data.find(m => m.id === crypto.id) || {};
-          const existing = acc.find(c => c.id === crypto.id);
-          if (existing) {
-            existing.total_amount += crypto.amount;
-            existing.sources.push({ source: crypto.source, amount: crypto.amount });
-          } else {
-            acc.push({
-              ...crypto,
-              current_price: marketCrypto.current_price || 0,
-              image: marketCrypto.image || 'path/to/default/image',
-              total_amount: crypto.amount,
-              sources: [{ source: crypto.source, amount: crypto.amount }]
-            });
+          const marketCrypto = marketDataById.get(crypto.id);
+          if (marketCrypto) {
+            const existing = acc.find(c => c.id === crypto.id);
+            if (existing) {
+              existing.total_amount += crypto.amount;
+              existing.sources.push({ source: crypto.source, amount: crypto.amount });
+            } else {
+              acc.push({
+                ...crypto,
+                current_price: marketCrypto.current_price || 0,
+                image: marketCrypto.image || 'path/to/default/image',
+                symbol: marketCrypto.symbol || 'N/A',  // Asegurando que el símbolo esté definido
+                total_amount: crypto.amount,
+                sources: [{ source: crypto.source, amount: crypto.amount }]
+              });
+            }
           }
           return acc;
         }, []);
-
+  
         setCryptos(cryptosData);
         setTotalHoldings(cryptosData.reduce((acc, crypto) => acc + (crypto.current_price * crypto.total_amount), 0));
       } catch (error) {
@@ -59,10 +65,10 @@ function Holdings() {
         setIsLoading(false);
       }
     };
-
+  
     fetchPortfolioAndMarketData();
   }, []);
-
+  
   const handleOpenSellModal = (crypto) => {
     const relevantEntries = cryptos.filter(c => c.id === crypto.id);
     const totalAmount = relevantEntries.reduce((acc, curr) => acc + curr.total_amount, 0);

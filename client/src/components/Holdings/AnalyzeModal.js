@@ -148,7 +148,7 @@ const AnalyzeModal = ({ onClose, averagePrice, crypto, sources, cryptos }) => {
           <ul>
             {aggregatedSources.map(source => (
               <li key={source.source}>
-                {source.source.charAt(0).toUpperCase() + source.source.slice(1)}: {source.amount} qty
+                {source.source.charAt(0).toUpperCase() + source.source.slice(1)}: {source.amount} {currentCrypto.symbol.toUpperCase()}
               </li>
             ))}
           </ul>
