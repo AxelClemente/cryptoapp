@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../../Header';
 import SellModal from '../SellModal/SellModal';
 import AnalyzeModal from '../Holdings/AnalyzeModal';
+import TotalModal from '../Holdings/TotalModal';
 import '../Holdings/holdings.css';
 
 function Holdings() {
@@ -11,6 +12,7 @@ function Holdings() {
   const [totalHoldings, setTotalHoldings] = useState(0);
   const [showSellModal, setShowSellModal] = useState(false);
   const [showAnalyzeModal, setShowAnalyzeModal] = useState(false);
+  const [showTotalModal, setShowTotalModal] = useState(false);  // Estado para controlar la visibilidad del TotalModal
   const [selectedCrypto, setSelectedCrypto] = useState({});
   const [averagePrice, setAveragePrice] = useState(0);
   const [sourceDetails, setSourceDetails] = useState([]);
@@ -133,7 +135,7 @@ function Holdings() {
   return (
     <div className="container">
       <Header/>
-      <div className="total-holdings">
+      <div className="total-holdings" onClick={() => setShowTotalModal(true)}>
         <img className="holdings-image" src="logo1.png" alt="Holdings" />
         <div className="total-value">
           Total: {totalHoldings.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
@@ -174,6 +176,13 @@ function Holdings() {
           crypto={selectedCrypto}
           sources={sourceDetails}
           cryptos={cryptos}  // Pasando el estado completo de cryptos al modal
+        />
+      )}
+      {showTotalModal && (
+        <TotalModal
+          onClose={() => setShowTotalModal(false)}
+          cryptos={cryptos}
+          totalHoldings={totalHoldings}
         />
       )}
     </div>
