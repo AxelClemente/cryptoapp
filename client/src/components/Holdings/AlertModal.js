@@ -3,36 +3,39 @@ import axios from 'axios';
 import '../Holdings/alertmodal.css'; // Asegúrate de tener estilos básicos para el modal
 
 const AlertModal = ({ onClose, crypto }) => {
-  const [priceThreshold, setPriceThreshold] = useState('');
-
-  if (!crypto) return null; // Retorna null si no hay crypto seleccionado
-
-  const setPriceAlert = async () => {
-    if (!priceThreshold) {
-      alert('Please enter a valid price threshold.');
-      return;
-    }
+    const [priceThreshold, setPriceThreshold] = useState('');
   
-    const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
-    const email = localStorage.getItem('email'); // Obtener el email directamente desde el localStorage
+    if (!crypto) return null;  // Retorna null si no hay crypto seleccionado
   
-    try {
-      const response = await axios.post(`${backendUrl}/api/setPriceAlert`, {
-        cryptoId: crypto.id,
-        targetPrice: priceThreshold,
-        email  // Enviar email como parte de la solicitud
-      }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      alert('Alert set successfully!');
-      onClose();
-    } catch (error) {
-      console.error('Failed to set price alert:', error);
-      alert('Failed to set price alert. Please try again.');
-    }
-  };
+    const setPriceAlert = async () => {
+      if (!priceThreshold) {
+        alert('Please enter a valid price threshold.');
+        return;
+      }
+  
+      const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
+      const email = localStorage.getItem('email');  // Obtener el email directamente desde el localStorage
+  
+      try {
+        // Realiza la solicitud y maneja la respuesta dentro del try
+        await axios.post(`${backendUrl}/api/setPriceAlert`, {
+          cryptoId: crypto.id,
+          targetPrice: priceThreshold,
+          email  // Enviar email como parte de la solicitud
+        }, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+  
+        // Si llegas a este punto, la solicitud fue exitosa
+        alert('Alert set successfully!');
+        onClose();
+      } catch (error) {
+        console.error('Failed to set price alert:', error);
+        alert('Failed to set price alert. Please try again.');
+      }
+    };
   
 
   return (
