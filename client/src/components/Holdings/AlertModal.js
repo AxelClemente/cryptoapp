@@ -1,0 +1,64 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../Holdings/alertmodal.css'; // Asegúrate de tener estilos básicos para el modal
+
+const AlertModal = ({ onClose, crypto }) => {
+  const [priceThreshold, setPriceThreshold] = useState('');
+
+  if (!crypto) return null; // Retorna null si no hay crypto seleccionado
+
+  const setPriceAlert = async () => {
+    if (!priceThreshold) {
+      alert('Please enter a valid price threshold.');
+      return;
+    }
+  
+    const backendUrl = process.env.REACT_APP_URL || "http://localhost:3000";
+    const email = localStorage.getItem('email'); // Obtener el email directamente desde el localStorage
+  
+    try {
+      const response = await axios.post(`${backendUrl}/api/setPriceAlert`, {
+        cryptoId: crypto.id,
+        targetPrice: priceThreshold,
+        email  // Enviar email como parte de la solicitud
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      alert('Alert set successfully!');
+      onClose();
+    } catch (error) {
+      console.error('Failed to set price alert:', error);
+      alert('Failed to set price alert. Please try again.');
+    }
+  };
+  
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <h3 className="modal-title">Crypto Alerts for {crypto.name}</h3>
+          <button className="close-button" onClick={onClose}>&times;</button>
+        </div>
+        <div className="modal-body">
+          <p>{crypto.name} ({crypto.symbol.toUpperCase()}).</p>
+          <div className="alerts-info">
+            <p><strong>Current Price:</strong> {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+            <p><strong>Total Holdings:</strong> {crypto.total_amount} {crypto.symbol.toUpperCase()}</p>
+            <p><strong>Value:</strong> ${(crypto.current_price * crypto.total_amount).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+          </div>
+          <div className="form-group">
+            <label htmlFor="price-threshold">Set Price Alert ($):</label>
+            <input type="number" id="price-threshold" name="price-threshold" placeholder="Enter price" 
+                   value={priceThreshold} onChange={e => setPriceThreshold(e.target.value)} />
+          </div>
+          <button className="button" onClick={setPriceAlert}>Set Alert</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AlertModal;

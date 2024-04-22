@@ -4,6 +4,7 @@ import Header from '../../Header';
 import SellModal from '../SellModal/SellModal';
 import AnalyzeModal from '../Holdings/AnalyzeModal';
 import TotalModal from '../Holdings/TotalModal';
+import AlertModal from '../Holdings/AlertModal'
 import '../Holdings/holdings.css';
 
 function Holdings() {
@@ -13,6 +14,7 @@ function Holdings() {
   const [showSellModal, setShowSellModal] = useState(false);
   const [showAnalyzeModal, setShowAnalyzeModal] = useState(false);
   const [showTotalModal, setShowTotalModal] = useState(false);  // Estado para controlar la visibilidad del TotalModal
+  const [showAlertModal, setShowAlertModal] = useState(false);  
   const [selectedCrypto, setSelectedCrypto] = useState({});
   const [averagePrice, setAveragePrice] = useState(0);
   const [sourceDetails, setSourceDetails] = useState([]);
@@ -99,6 +101,11 @@ function Holdings() {
     setShowAnalyzeModal(true);
   };
 
+  const handleOpenAlertModal = (crypto) => {
+    setSelectedCrypto(crypto);
+    setShowAlertModal(true);
+  };
+
   const handleSellCrypto = async (amountToSell) => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
@@ -158,6 +165,7 @@ function Holdings() {
             <div>
               <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Vender</button>
               <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analizar</button>
+              <button className="analyze-button" onClick={() => handleOpenAlertModal(crypto)}>Alerts</button>
             </div>
           </li>
         ))}
@@ -183,6 +191,12 @@ function Holdings() {
           onClose={() => setShowTotalModal(false)}
           cryptos={cryptos}
           totalHoldings={totalHoldings}
+        />
+      )}
+      {showAlertModal && (
+        <AlertModal
+          onClose={() => setShowAlertModal(false)}
+          crypto={selectedCrypto}  // Asegúrate de pasar el crypto seleccionado al modal
         />
       )}
     </div>

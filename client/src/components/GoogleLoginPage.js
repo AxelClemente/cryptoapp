@@ -19,6 +19,8 @@ function GoogleLoginPage() {
       // Almacenamiento del token propio del backend y userId en localStorage
       localStorage.setItem('userId', backendResponse.data.user._id);
       localStorage.setItem('token', backendResponse.data.token);
+      localStorage.setItem('email', backendResponse.data.user.email); // Almacenar el email en localStorage
+
 
       navigate('/HomePage2'); // Redirecciona a la página de inicio tras el login exitoso
     } catch (error) {

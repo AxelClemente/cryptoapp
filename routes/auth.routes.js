@@ -13,7 +13,7 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 router.post('/google', async (req, res) => {
   const { token } = req.body; // Recibe el token de Google directamente
 
-  console.log("Recibiendo solicitud de login con Google con token:", token);
+  // console.log("Recibiendo solicitud de login con Google con token:", token);
 
   try {
     // Verifica el token con Google
