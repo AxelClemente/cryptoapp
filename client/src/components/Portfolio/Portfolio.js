@@ -103,16 +103,16 @@ const Portfolio = () => {
                         <span className="crypto-index">{index + 1}. </span>
                         <div className="crypto-info">
                             <img className="crypto-image" src={crypto.image} alt={crypto.name} />
-                            <div>
+                            <div className="all">
                                 <p className="crypto-name">{crypto.name}</p>
-                                <p className="crypto-price">${crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+                                <p className="crypto-price">{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'symbol' })}</p>
                             </div>
                             <span  className='crypto-change' style={{ color: crypto.price_change_percentage_24h < 0 ? 'red' : 'green' }}>
                               {crypto.price_change_percentage_24h.toFixed(2)}%
                             </span> 
                         </div>
                         <div className="crypto-details">
-                            <p className="crypto-ath">ATH - ${crypto.ath.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+                            <p className="crypto-ath">ATH - ${crypto.ath.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
                             <button onClick={() => handleOpenModal(crypto.id)} className="add-button">
                                 Agregar
                             </button>
