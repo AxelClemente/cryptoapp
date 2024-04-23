@@ -21,7 +21,7 @@ router.get('/markets',  async (req, res) => {
       }
     });
 
-    // console.log("Datos de mercado obtenidos exitosamente", response.data);
+    console.log("Datos de mercado obtenidos exitosamente", response.data);
     res.json(response.data);
    
   } catch (error) {
