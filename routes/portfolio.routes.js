@@ -112,5 +112,22 @@ router.delete('/sell', async (req, res) => {
   }
 });
 
+router.get('/global-market-cap', async (req, res) => {
+  const url = 'https://api.coingecko.com/api/v3/global';
+
+  try {
+      // Realizar la solicitud GET al API de CoinGecko
+      const response = await axios.get(url);
+      // Extraer el market cap global en USD
+      const marketCap = response.data.data.total_market_cap.usd;
+      // Enviar la respuesta con el market cap
+      res.json({ marketCap: marketCap.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) });
+  } catch (error) {
+      console.error('Failed to fetch global market cap:', error);
+      res.status(500).json({ message: 'Failed to fetch global market cap', error: error.toString() });
+  }
+});
+
+
 
 module.exports = router;
