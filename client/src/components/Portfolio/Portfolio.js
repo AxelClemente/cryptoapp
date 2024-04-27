@@ -269,9 +269,14 @@ const Portfolio = () => {
                             </span> 
                         </div>
                         <div className="crypto-details">
-                            <p className="crypto-ath">ATH -{crypto.ath.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+                            <p className="crypto-ath">
+                                <span style={{ color: '#656b92', fontSize: '12px' }}>ATH - </span>
+                                <span style={{ color: '#009393', fontSize: '16px' }}>
+                                    {crypto.ath.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                </span>
+                            </p>
                             <button onClick={() => handleOpenModal(crypto.id)} className="add-button">
-                                Agregar
+                                Add coin
                             </button>
                         </div>
                     </li>

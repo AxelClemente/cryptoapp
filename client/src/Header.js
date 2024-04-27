@@ -14,10 +14,10 @@ export default function Header() {
         </div>
       </div>
       <div className="menu">
-        <a href="/HomePage2" className="menu-item">Home</a>
+        {/* <a href="/HomePage2" className="menu-item">Home</a> */}
         <a href="/holdings" className="menu-item">Holdings</a>
         <a href="/portfolio" className="menu-item">Markets</a>
-        <a href="/samplePortfolio" className="menu-item">Portfolio</a>
+        <a href="/samplePortfolio" className="menu-item">Test Portfolio</a>
       </div>
     </nav>
   );

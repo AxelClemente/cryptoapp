@@ -22,7 +22,7 @@ function GoogleLoginPage() {
       localStorage.setItem('email', backendResponse.data.user.email); // Almacenar el email en localStorage
 
 
-      navigate('/HomePage2'); // Redirecciona a la página de inicio tras el login exitoso
+      navigate('/portfolio'); // Redirecciona a la página de inicio tras el login exitoso
     } catch (error) {
       console.error('Error al enviar información al backend:', error);
     }

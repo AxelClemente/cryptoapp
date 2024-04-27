@@ -11,7 +11,6 @@
 }
 
 .container {
-  margin: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -25,8 +24,8 @@
 .total-holdings {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  margin-top: 10rem;
+  margin-top: -5rem;
+  
 }
 
 .holdings-image {
@@ -40,6 +39,7 @@
   font-size: 1rem; /* 16px */
   font-weight: 600;
   flex-grow: 1; /* Asegurarse de que el texto del valor total tenga espacio para crecer */
+
 }
 
 .crypto-list {

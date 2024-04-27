@@ -66,6 +66,25 @@
   text-align: center; /* Texto centrado */
 }
 
+.icon.bars-icon {
+  position: absolute; /* Posicionamiento absoluto para un mejor control */
+  top: 0.7rem; /* Ajusta esta posición para alinear con el borde superior del header */
+  right: 10px; /* Ajusta esta posición para alinear con el borde derecho del header */
+  color: #000; /* Asegúrate de que el ícono sea visible contra cualquier fondo */
+  width: 2.5rem;
+  height: auto;
+  margin-right: 2rem;
+}
+
+.header.open .icon.x-icon {
+  display: block; /* Mostrar el ícono X cuando el menú esté abierto */
+  position: absolute; /* Posicionamiento absoluto dentro del menú */
+  z-index: 1300; /* Asegúrate de que el icono esté sobre el menú */
+  color: #fff; /* Icono blanco para mejor visibilidad */
+  width: 2.5rem;
+  margin-right: 2rem;
+}
+
 @media (max-width: 640px) {
   .header {
     padding: 0 10px; /* Ajustar el padding si es necesario */
