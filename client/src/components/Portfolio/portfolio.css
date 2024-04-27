@@ -5,6 +5,34 @@
   align-items: center;
 }
 
+.market-cap-container {
+  background-color: rgba(255, 255, 255, 0.319); /* Fondo negro semitransparente */
+  display: flex;
+  align-items: center;
+  border-radius: 30px; /* Bordes curvos */
+  padding: 10px 20px; /* Padding interior para dar espacio al texto */
+  margin-left: 0.5rem; /* Margen a la izquierda para separarlo del borde o elementos adyacentes */
+  color: #f7931a; /* Color de texto blanco para el título */
+  width: auto;
+}
+
+.market-cap-title {
+  font-weight: bold; /* Texto en negrita */
+  margin: 0; /* Elimina márgenes por defecto */
+}
+
+.market-cap-icon {
+  height: 80px; /* Ajusta esto según tus necesidades */
+  width: 80px; /* Asegura que la imagen sea cuadrada */
+  margin-right: 1px; /* Espacio entre la imagen y el texto */
+}
+
+.market-cap-value {
+  color: #a29d9d; /* Color gris para el valor del Market Cap */
+  font-size: 0.9em; /* Tamaño de fuente más pequeño */
+  margin: -0.9px 0 0; /* Espaciado hacia arriba para separarlo del título */
+}
+
 .crypto-info {
   display: flex;
   align-items: center;
@@ -50,14 +78,25 @@
 }
 
 .search-bar {
-  box-sizing: border-box; /* Asegura que padding y border estén dentro del ancho total */
-  width: 100%; /* Ocupa todo el ancho disponible del contenedor padre */
-  padding: 10px 20px; /* Padding interno de 10px vertical y 20px horizontal */
-  margin: 0 auto 20px; /* Centrado horizontalmente y 20px de margen inferior */
-  border: 1px solid #ccc; /* Borde sutil */
-  border-radius: 4px; /* Bordes redondeados */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Sombra suave para destacar */
-  outline: none; /* Elimina el borde de foco que añade el navegador por defecto */
+  position: relative;
+  width: 20%;
+  margin-left: 2.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #5e5858;  /* Cambia el color si es necesario para mejorar la visibilidad */
+  z-index: 10;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 10px 10px 35px;  /* Aumenta el padding izquierdo para evitar que el texto se sobreponga al ícono */
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .crypto-change {

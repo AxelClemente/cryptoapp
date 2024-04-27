@@ -182,6 +182,7 @@ const Portfolio = () => {
 
                 // Obtener Market Cap global
                 const marketCapResponse = await axios.get(`${backendUrl}/portfolio/global-market-cap`);
+                console.log("Market Cap data received:", marketCapResponse.data); // Aquí se registra la respuesta del Market Cap
                 setMarketCap(marketCapResponse.data.marketCap);
             } catch (error) {
                 console.error('Error fetching data from the API', error);
@@ -231,17 +232,26 @@ const Portfolio = () => {
     return (
         <div className="portfolio-container">
             <Header/>
-            <div className="search-bar">
-              <input
-                  type="text"
-                  placeholder="Search Cryptocurrency"
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-              />
-            </div>
-            <div>
-              <p>Market Cap</p>
-              <p>{marketCap}</p> {/* Mostrar el Market Cap aquí */}
+        <div className="search-bar">
+            <input
+                type="text"
+                placeholder=""
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                style={{ paddingLeft: '30px' }}  // Deja espacio para el ícono
+            />
+            <span className="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </span>
+        </div>
+            <div className="market-cap-container">
+                <img src="world.png" alt="Global Market" className="market-cap-icon"/>
+                <div>
+                    <p className="market-cap-title">Market Cap</p>
+                    <p className="market-cap-value">{marketCap}</p> {/* Mostrar el Market Cap aquí */}
+                </div>
             </div>
             <ul className="crypto-list">
                 {filteredCryptos.map((crypto, index) => (

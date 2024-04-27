@@ -5,34 +5,24 @@
 
 /* Estilos del header */
 .header {
-  background-color: #fff; /* Fondo blanco */
+  background-color: #ffffff; /* Fondo blanco */
   width: 100%; /* Ocupa el ancho completo de la vista */
   padding: 0 16px; /* Padding horizontal para no pegar el contenido a los bordes */
   position: fixed; /* Posición fija en la parte superior */
   top: 0;
   left: 0;
-  z-index: 1000; /* Alto z-index para mantenerlo sobre otros contenidos */
   display: flex; /* Usando flexbox para alinear los elementos internos */
   align-items: center; /* Centrado vertical de los elementos del header */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave para darle profundidad */
   height: 60px; /* Altura fija del header */
+  z-index: 1050; /* Asegúrate de que el header esté por encima del menú desplegable */
 }
 
 .header-content {
   width: 100%; /* Aprovechar el ancho completo del header */
-  max-width: 1200px; /* Máximo ancho del contenido para grandes pantallas */
   margin: 0 auto; /* Centrado dentro del header */
   display: flex;
   justify-content: space-between; /* Espacio entre logo y navegación */
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 40px; /* Tamaño visible del logo */
 }
 
 .icons {
@@ -45,8 +35,84 @@
   margin-left: 12px; /* Espaciado entre iconos */
   cursor: pointer;
   font-size: 24px; /* Iconos suficientemente grandes para interacción */
+  color: black; /* Asegurarse de que el color de los íconos sea visible */
 }
 
-.menu{
-  margin-right: 4rem;
+.menu {
+  display: none; /* Ocultar el menú inicialmente */
+}
+
+.header.open .menu {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos del menú verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro para el menú */
+  z-index: 1200; /* Asegúrate de que esté sobre otros contenidos */
+  padding-top: 60px; /* Espacio para el header, ajusta según la altura de tu header */
+}
+
+.menu-item {
+  color: #fff; /* Texto blanco para mejor visibilidad */
+  padding: 10px 20px; /* Espaciado para cada elemento del menú */
+  margin: 5px 0; /* Margen entre elementos del menú */
+  font-size: 16px; /* Ajusta el tamaño del texto según necesidades */
+  width: 100%; /* Asegura que los enlaces usen todo el ancho posible */
+  text-align: center; /* Texto centrado */
+  border-bottom: 1px solid #ffffff50; /* Borde sutil entre elementos del menú */
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 0 10px; /* Ajustar el padding si es necesario */
+  }
+
+  .icons {
+    margin-right: 0; /* Elimina cualquier margen derecho para maximizar el espacio */
+    width: 100%; /* Asegura que los íconos ocupen el ancho completo disponible */
+    justify-content: flex-end; /* Alinea los íconos al extremo derecho */
+  }
+
+  .icon.bars-icon {
+    position: absolute; /* Posicionamiento absoluto para un mejor control */
+    top: 0.7rem; /* Ajusta esta posición para alinear con el borde superior del header */
+    right: 10px; /* Ajusta esta posición para alinear con el borde derecho del header */
+    color: #000; /* Asegúrate de que el ícono sea visible contra cualquier fondo */
+    width: 2.5rem;
+    height: auto;
+    margin-right: 6rem;
+  }
+
+  .icon.x-icon {
+    display: none; /* Ocultar el ícono X inicialmente */
+  }
+
+  .header.open .icon.x-icon {
+    display: block; /* Mostrar el ícono X cuando el menú esté abierto */
+    position: absolute; /* Posicionamiento absoluto dentro del menú */
+    z-index: 1300; /* Asegúrate de que el icono esté sobre el menú */
+    color: #fff; /* Icono blanco para mejor visibilidad */
+    width: 2.5rem;
+    margin-right: 6rem;
+  }
+
+  .header.open .icon.bars-icon {
+    display: none; /* Ocultar el ícono de menú cuando esté abierto */
+  }
+
+  .icon {
+    padding: 8px;
+    margin: 0; /* Elimina cualquier margen para evitar desplazamientos innecesarios */
+    font-size: 20px; /* Ajusta el tamaño del ícono para que no sea demasiado grande */
+    display: block; /* Asegúrate de que el ícono esté visible */
+  }
+
+  .menu-item {
+    display: block; /* Asegúrate de que los ítems del menú sean visibles */
+  }
 }
