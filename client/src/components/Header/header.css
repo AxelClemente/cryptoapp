@@ -64,7 +64,6 @@
   font-size: 16px; /* Ajusta el tamaño del texto según necesidades */
   width: 100%; /* Asegura que los enlaces usen todo el ancho posible */
   text-align: center; /* Texto centrado */
-  border-bottom: 1px solid #ffffff50; /* Borde sutil entre elementos del menú */
 }
 
 @media (max-width: 640px) {
@@ -85,7 +84,7 @@
     color: #000; /* Asegúrate de que el ícono sea visible contra cualquier fondo */
     width: 2.5rem;
     height: auto;
-    margin-right: 6rem;
+    margin-right: 2rem;
   }
 
   .icon.x-icon {
@@ -98,7 +97,7 @@
     z-index: 1300; /* Asegúrate de que el icono esté sobre el menú */
     color: #fff; /* Icono blanco para mejor visibilidad */
     width: 2.5rem;
-    margin-right: 6rem;
+    margin-right: 2rem;
   }
 
   .header.open .icon.bars-icon {
