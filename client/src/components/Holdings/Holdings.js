@@ -140,14 +140,22 @@ function Holdings() {
   }
 
   return (
+      
     <div className="container">
       <Header/>
+
       <div className="total-holdings" onClick={() => setShowTotalModal(true)}>
         <img className="holdings-image" src="logo1.png" alt="Holdings" />
         <div className="total-value">
-          Total: {totalHoldings.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
+          Total: {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
         </div>
       </div>
+      <div className="title">
+	<p className="crypto-title">Coin</p>
+    <p className="crypto-title">Price</p>
+    <p className="crypto-title">QTY</p>
+    <p className="crypto-title">Total</p>
+  </div>
       <ul className="crypto-list">
         {cryptos.map((crypto) => (
           <li key={crypto.id} className="crypto-item">
@@ -156,10 +164,10 @@ function Holdings() {
               <div className="crypto-info">
                 <p className="crypto-name">{crypto.name}</p>
                 <p className="crypto-details">
-                  {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
-                  <span className="crypto-qty"> QTY: {crypto.total_amount}</span>
+                  {crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                  <span className="crypto-qty">{crypto.total_amount}</span>
                 </p>
-                <p className="crypto-value">Total: ${(crypto.current_price * crypto.total_amount).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+                <p className="crypto-value">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
               </div>
             </div>
             <div>
@@ -170,6 +178,7 @@ function Holdings() {
           </li>
         ))}
       </ul>
+
       {showSellModal && (
         <SellModal
           onClose={() => setShowSellModal(false)}

@@ -23,8 +23,8 @@
 
 .total-holdings {
   display: flex;
-  align-items: center;
-  margin-top: -5rem;
+  align-items: center; 
+  justify-content: end;
   
 }
 
@@ -87,34 +87,7 @@
   
 }
 
-@media (min-width: 768px) {
-    .container {
-      margin-left: 210px;
-      margin-right: 210px;
-    }
-  
-    .holdings-image {
-      height: 64px;
-      width: 64px;
-    }
-  
-    .total-value {
-      font-size: 18px;
-    }
-  
-    .crypto-image {
-      height: 48px;
-      width: 48px;
-    }
-  
-    .crypto-name {
-      font-size: 16px;
-    }
-  
-    .crypto-details {
-      font-size: 14px;
-    }
-}
+
 
 @media (max-width: 640px) {
     .crypto-item {
@@ -141,7 +114,39 @@
       background-color: #4CAF50; /* Green for analyze to differentiate from sell */
     }
     
-  
+    .total-holdings {
+      display: flex;
+      align-items: center; 
+      justify-content: center;
+      margin-top: 4rem;
+    }
 
+    .title {
+      display: flex;
+        justify-content: space-evenly;
+        font-size: 0.5rem;
+        font-weight: 600;
+        margin-right: 12rem;
+       
+        
+    }
+    .crypto-title {
+      margin: 0 25px; /* Ajusta esto para cambiar el espacio exterior entre los elementos */
+  }
+
+  .total-value {
+    font-size: 0.7rem; /* 16px */
+    font-weight: 600;
+    margin-left: 0rem;
+    
+  
+  }
+
+  .holdings-image {
+    height: 38px;
+    width: 38px;
+    margin-left: 7rem;
+    border-radius: 50%; /* Hacer la imagen redonda */
+  }
     
 }
