@@ -139,77 +139,141 @@ function Holdings() {
     return <div className="loading">Cargando...</div>;
   }
 
-  return (
+//   return (
       
-    <div className="container">
-      <Header/>
+//     <div>
+//       <Header/>
 
-      <div className="total-holdings" onClick={() => setShowTotalModal(true)}>
-        <img className="holdings-image" src="logo1.png" alt="Holdings" />
-        <div className="total-value">
-          Total: {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-        </div>
-      </div>
-      <div className="title">
-	<p className="crypto-title">Coin</p>
-    <p className="crypto-title">Price</p>
-    <p className="crypto-title">QTY</p>
-    <p className="crypto-title">Total</p>
-  </div>
-      <ul className="crypto-list">
-        {cryptos.map((crypto) => (
-          <li key={crypto.id} className="crypto-item">
-            <div>
-              <img className="crypto-image" src={crypto.image} alt={crypto.name} />
-              <div className="crypto-info">
-                <p className="crypto-name">{crypto.name}</p>
-                <p className="crypto-details">
-                  {crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-                  <span className="crypto-qty">{crypto.total_amount}</span>
-                </p>
-                <p className="crypto-value">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-              </div>
-            </div>
-            <div>
-              <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Vender</button>
-              <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analizar</button>
-              <button className="analyze-button" onClick={() => handleOpenAlertModal(crypto)}>Alerts</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+//       <div className="total-holdings" onClick={() => setShowTotalModal(true)}>
+//         <img className="holdings-image" src="logo1.png" alt="Holdings" />
+//         <div>
+//           Total: {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+//         </div>
+//       </div>
+//       <div className="title">
+// 	<p className="crypto-title">Coin</p>
+//     <p >Price</p>
+//     <p >QTY</p>
+//     <p >Total</p>
+//   </div>
+//       <ul className="crypto-list">
+//         {cryptos.map((crypto) => (
+//           <li key={crypto.id} className="crypto-item">
+//             <div>
+//               <img className="crypto-image" src={crypto.image} alt={crypto.name} />
+//               <div>
+//                 <p>{crypto.name}</p>
+//                 <p>{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+//                 <p>{crypto.total_amount}</p>
+//                 <p>{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+//               </div>
+//             </div>
+//             <div>
+//               <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Vender</button>
+//               <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analizar</button>
+//               <button className="analyze-button" onClick={() => handleOpenAlertModal(crypto)}>Alerts</button>
+//             </div>
+//           </li>
+//         ))}
+//       </ul>
 
-      {showSellModal && (
-        <SellModal
-          onClose={() => setShowSellModal(false)}
-          onConfirm={handleSellCrypto}
-          crypto={selectedCrypto}
-        />
-      )}
-      {showAnalyzeModal && (
-        <AnalyzeModal
-          onClose={() => setShowAnalyzeModal(false)}
-          averagePrice={averagePrice}
-          crypto={selectedCrypto}
-          sources={sourceDetails}
-          cryptos={cryptos}  // Pasando el estado completo de cryptos al modal
-        />
-      )}
-      {showTotalModal && (
-        <TotalModal
-          onClose={() => setShowTotalModal(false)}
-          cryptos={cryptos}
-          totalHoldings={totalHoldings}
-        />
-      )}
-      {showAlertModal && (
-        <AlertModal
-          onClose={() => setShowAlertModal(false)}
-          crypto={selectedCrypto}  // Asegúrate de pasar el crypto seleccionado al modal
-        />
-      )}
+//       {showSellModal && (
+//         <SellModal
+//           onClose={() => setShowSellModal(false)}
+//           onConfirm={handleSellCrypto}
+//           crypto={selectedCrypto}
+//         />
+//       )}
+//       {showAnalyzeModal && (
+//         <AnalyzeModal
+//           onClose={() => setShowAnalyzeModal(false)}
+//           averagePrice={averagePrice}
+//           crypto={selectedCrypto}
+//           sources={sourceDetails}
+//           cryptos={cryptos}  // Pasando el estado completo de cryptos al modal
+//         />
+//       )}
+//       {showTotalModal && (
+//         <TotalModal
+//           onClose={() => setShowTotalModal(false)}
+//           cryptos={cryptos}
+//           totalHoldings={totalHoldings}
+//         />
+//       )}
+//       {showAlertModal && (
+//         <AlertModal
+//           onClose={() => setShowAlertModal(false)}
+//           crypto={selectedCrypto}  // Asegúrate de pasar el crypto seleccionado al modal
+//         />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Holdings;
+
+return (
+  <div className="holdings-container">
+
+    <Header/>
+    
+    <div className="header-controls">
+      <img className="logo-image" src="logo1.png" alt="Logo" />
+      <p className="total-holdings-value">
+        Total: {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+      </p>
+      <button className="chart-button" onClick={() => setShowTotalModal(true)}>Chart</button>
     </div>
-  );
+
+    <div className="holdings-list-container">
+      {cryptos.map((crypto) => (
+        <div key={crypto.id} className="holdings-item">
+          <img className="crypto-image" src={crypto.image} alt={crypto.name} />
+          <div className="crypto-details">
+            <p className="crypto-name">{crypto.name}</p>
+            <p className="crypto-amount">Amount: {crypto.total_amount}</p>
+            <p className="crypto-price">Price: {crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+          </div>
+          <div className="crypto-actions">
+            <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
+            <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analyze</button>
+            <button className="alert-button" onClick={() => handleOpenAlertModal(crypto)}>Alert</button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {showSellModal && (
+      <SellModal
+        onClose={() => setShowSellModal(false)}
+        onConfirm={handleSellCrypto}
+        crypto={selectedCrypto}
+      />
+    )}
+    {showAnalyzeModal && (
+      <AnalyzeModal
+        onClose={() => setShowAnalyzeModal(false)}
+        averagePrice={averagePrice}
+        crypto={selectedCrypto}
+        sources={sourceDetails}
+        cryptos={cryptos}
+      />
+    )}
+    {showTotalModal && (
+      <TotalModal
+        onClose={() => setShowTotalModal(false)}
+        cryptos={cryptos}
+        totalHoldings={totalHoldings}
+      />
+    )}
+    {showAlertModal && (
+      <AlertModal
+        onClose={() => setShowAlertModal(false)}
+        crypto={selectedCrypto}
+      />
+    )}
+  </div>
+);
 }
 
 export default Holdings;
