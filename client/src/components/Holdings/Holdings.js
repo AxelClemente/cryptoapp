@@ -229,11 +229,11 @@ return (
       {cryptos.map((crypto) => (
         <div key={crypto.id} className="holdings-item">
           <img className="crypto-image" src={crypto.image} alt={crypto.name} />
-          <div className="crypto-details">
+          <div className="crypto-detailss">
             <p className="crypto-name">{crypto.name}</p>
             <p className="crypto-amount">QTY: {crypto.total_amount}</p>
             <p >{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-            <p className="crypto-price">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+            <p className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
           </div>
           <div className="crypto-actions">
             <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
