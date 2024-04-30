@@ -69,8 +69,8 @@
   padding: 8px 16px;
   border-radius: 4px;
   border: 1px solid #ccc; /* Bordes sutiles para los botones */
-  background-color: #fff; /* Fondo blanco para los botones */
-  color: #627D98; /* Color de texto que combina con el botón Chart */
+  background-color: #f7931a; /* Fondo blanco para los botones */
+  color: white; /* Color de texto que combina con el botón Chart */
   cursor: pointer;
   transition: all 0.3s; /* Transición suave para interacción */
 }
@@ -82,8 +82,8 @@
 /* Media queries para responsividad */
 @media (max-width: 640px) {
   .holdings-item {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    
   }
 
   .crypto-actions {
@@ -96,6 +96,21 @@
   .sell-button, .analyze-button, .alert-button {
     margin-top: 5px;
     width: 100%;
+  }
+
+  .header-controls{
+    margin-top: 4rem;
+  }
+
+  .crypto-details {
+    
+    margin-right: 10rem;
+  }
+
+  .crypto-price{
+    margin-top: 1rem;
+    font-weight: 600;
+    color: green;
   }
 }
 

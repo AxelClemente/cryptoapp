@@ -231,8 +231,9 @@ return (
           <img className="crypto-image" src={crypto.image} alt={crypto.name} />
           <div className="crypto-details">
             <p className="crypto-name">{crypto.name}</p>
-            <p className="crypto-amount">Amount: {crypto.total_amount}</p>
-            <p className="crypto-price">Price: {crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+            <p className="crypto-amount">QTY: {crypto.total_amount}</p>
+            <p >{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+            <p className="crypto-price">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
           </div>
           <div className="crypto-actions">
             <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
