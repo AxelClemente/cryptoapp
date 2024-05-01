@@ -1,3 +1,86 @@
-.modal-body{
- display: flex;
-}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .modal-title {
+    margin: 0;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    font-size: 0.9rem;
+  }
+
+  .modal-wallet {
+    margin-bottom: 1rem;
+    font-weight: bold; /* Hacer el texto más grueso */
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  img {
+    margin-right: 10px;
+  }
+
+  .financial-summary {
+    text-align: center;
+    
+    margin-top: 0.5rem;
+  }
+  
+  .value-difference-indicator {
+    height: 2px; /* Altura de la línea */
+    background-color: #e1dede; /* Color de la línea, puede ser ajustado */
+    margin: 5px auto; /* Centrar la línea horizontalmente y añadir espacio vertical */
+    width: 50%; /* Ancho de la línea como porcentaje del contenedor, ajustable */
+  }
+
+  .wallet-container {
+    background-color: rgba(235, 233, 233, 0.8); /* Fondo casi transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 15px; /* Espacio interior para separar el contenido de los bordes */
+    margin-top: 10px; /* Separación con elementos anteriores */
+    margin-bottom: 20px; /* Separación con elementos posteriores */
+  }
+  
+  
