@@ -1,34 +1,45 @@
-.modal-overlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75); /* Fondo oscuro para mayor enfoque en el modal */
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.75);
     align-items: center;
     justify-content: center;
-    z-index: 1050; /* Asegurándose de que el modal siempre esté en primer plano */
+    z-index: 1050;
+    display: flex;
 }
+
+
+
+.amount {
+    color: black; /* Azul para la cantidad */
+}
+  
+.total-value {
+    color: #aeb4cc; /* Verde para el valor total calculado */
+}
+  
 
 .modal-content {
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px; /* Bordes redondeados para un look moderno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar el modal */
-    width: 90%; /* Ancho máximo para asegurar que se vea bien en móviles */
-    max-width: 500px; /* Máximo ancho del modal */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px; /* Espacio entre cabecera y cuerpo del modal */
+    margin-bottom: 15px;
 }
 
 .modal-title {
-    font-size: 1.5rem; /* Título grande para fácil lectura */
-    color: #333; /* Color oscuro para contraste con el fondo */
+    font-size: 1.5rem;
+    color: #333;
 }
 
 .close-button {
@@ -36,29 +47,29 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #666; /* Color suave para el botón de cerrar */
+    color: #666;
 }
 
 .modal-body {
-    font-size: 1rem; /* Tamaño de fuente estándar para el contenido */
+    font-size: 1rem;
 }
 
 .form-group {
-    margin-bottom: 10px; /* Espacio entre form groups para no saturar visualmente */
+    margin-bottom: 10px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: .5rem;
-    color: #333; /* Color oscuro para los textos para facilitar la lectura */
+    color: #333;
 }
 
 .form-group input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd; /* Borde sutil */
-    border-radius: 4px; /* Bordes ligeramente redondeados */
-    box-sizing: border-box; /* Box sizing para que padding no afecte el ancho */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .button {
@@ -68,26 +79,69 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.2s; /* Transición suave para el background */
+    transition: background-color 0.2s;
 }
 
 .button.cancel {
-    background-color: #ccc; /* Botón cancelar con un color neutro */
+    background-color: #ccc;
 }
 
 .button.submit {
-    background-color: #f7931a; /* Botón confirmar con un color destacado */
-    color: white; /* Texto blanco para contraste */
+    background-color: #f7931a;
+    color: white;
 }
 
-@media (min-width: 768px) {
-    .modal-content {
-        width: 80%; /* Ancho más estrecho en escritorios para mejor estética */
-        max-width: 600px; /* Máximo ancho más grande en escritorio */
+@media (min-width: 640px) {
+
+    .tituloEImagen {
+        display: flex;
+        
     }
 
-    .button {
-        padding: 15px 30px;
-        font-size: 1.25rem; /* Botones más grandes en escritorio */
+    .crypto-image {
+        width: 1rem;
+        height: 1rem;
+        
     }
+
+    .rectangulo-curvo {
+        display: flex;
+        background-color: rgba(235, 233, 233, 0.8); /* Fondo casi transparente */
+        border-radius: 10px; /* Bordes redondeados */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        padding: 15px; /* Espacio interior para separar el contenido de los bordes */
+        margin-top: 10px; /* Separación con elementos anteriores */
+        margin-bottom: 20px; /* Separación con elementos posteriores */
+        justify-content: space-between;
+        
+    }
+
+    .insideRectangulo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    .text {
+        font-size: 0.7rem;
+        font-weight: bold;
+        
+    }
+
+    .textoGanancia {
+        font-size: 0.7rem;
+        color: rgb(106, 106, 106);
+        
+    }
+
+    .sellAndTotal {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
 }
+
+
+
