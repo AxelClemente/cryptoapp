@@ -1,33 +1,42 @@
 .holdings-container {
-  font-family: 'Arial', sans-serif; /* O la fuente que prefieras */
-  max-width: 1200px; /* O el ancho que prefieras */
-  margin: 0 auto;
-  background: #fff; /* Cambiar si es necesario */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra ligera para la tarjeta */
+  display: flex;
+  justify-content: center; /* Centra los hijos horizontalmente */
+  align-items: center; /* Centra los hijos verticalmente si se desea */
+  width: 100%; /* Ocupa todo el ancho posible para permitir centrado */
+  flex-direction: column;
 }
 
 .header-controls {
+  margin-top: 5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
+  justify-content: center;
   border-bottom: 1px solid #eaeaea;
   background-color: #f8f9fa; /* Fondo claro para el encabezado */
+  background: white;
+  border-radius: 8px;
+  padding:2rem 6rem;
+  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  max-width: 20rem;
+
 }
 
 .logo-image {
-  height: 50px; /* Ajusta el tamaño según sea necesario */
+  width: 6rem;
+  height: 6rem; 
 }
 
 .total-holdings-value {
-  font-size: 18px;
-  color: #333; /* Color de texto oscuro para contraste */
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
 }
 
 .chart-button {
-  padding: 10px 20px;
-  background-color: #627D98; /* Color de fondo para el botón Chart */
-  color: #fff; /* Texto blanco para el botón */
+  background-color: #ffffff; /* Color de fondo para el botón Chart */
+  color: #000000; /* Texto blanco para el botón */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -35,7 +44,7 @@
 }
 
 .chart-button:hover {
-  background-color: #506680; /* Color al pasar el mouse por encima */
+  color: #f7931a;
 }
 
 .holdings-list-container {

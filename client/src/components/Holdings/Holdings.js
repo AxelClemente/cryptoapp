@@ -148,7 +148,7 @@ return (
     <div className="header-controls">
       <img className="logo-image" src="logo1.png" alt="Logo" />
       <p className="total-holdings-value">
-        Total: {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
       </p>
       <button className="chart-button" onClick={() => setShowTotalModal(true)}>Chart</button>
     </div>
