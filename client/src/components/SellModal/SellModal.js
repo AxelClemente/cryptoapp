@@ -37,18 +37,18 @@ const SellModal = ({ onClose, onConfirm, crypto, averagePrice, sources, cryptos 
     setAmount(sellAmount);
   };
 
-  // const getSourceImage = (source) => {
-  //   switch (source.toLowerCase()) {
-  //     case 'metamask':
-  //       return 'metamask.png';
-  //     case 'crypto.com':
-  //       return 'crypto.png';
-  //     case 'binance':
-  //       return 'binance.jpg';
-  //     default:
-  //       return 'public/default.png';  // Asigna una imagen predeterminada si no coincide ninguna
-  //   }
-  // };
+  const getSourceImagee = (source) => {
+    switch (source.toLowerCase()) {
+      case 'metamask':
+        return 'metamask.png';
+      case 'crypto.com':
+        return 'crypto.png';
+      case 'binance':
+        return 'binance.jpg';
+      default:
+        return 'public/default.png';  // Asigna una imagen predeterminada si no coincide ninguna
+    }
+  };
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -73,7 +73,14 @@ const SellModal = ({ onClose, onConfirm, crypto, averagePrice, sources, cryptos 
               <p className='text'>Current Price</p>
             </div>
             <div>
-              <p>Dropdown menu</p>
+            <ul className='ul'>
+              {aggregated.map(source => (
+                <li key={source.source}>
+                  <img src={getSourceImagee(source.source)} alt={source.source} style={{ width: '20px', marginRight: '10px' }} />
+                  {source.source.charAt(0).toUpperCase() + source.source.slice(1)}: {source.amount}
+                </li>
+              ))}
+            </ul>
             </div>
             <div className='insideRectangulo'>
               {amount}

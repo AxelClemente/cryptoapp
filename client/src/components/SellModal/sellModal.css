@@ -91,7 +91,7 @@
     color: white;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
 
     .tituloEImagen {
         display: flex;
@@ -101,6 +101,11 @@
     .crypto-image {
         width: 1rem;
         height: 1rem;
+        
+    }
+
+    .ul {
+        font-size: 0.5rem;
         
     }
 
