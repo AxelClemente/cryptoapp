@@ -42,22 +42,23 @@ const AlertModal = ({ onClose, crypto }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h3 className="modal-title">Crypto Alerts for {crypto.name}</h3>
+        <img src={crypto.image || 'path/to/default/image.jpg'} alt={crypto.name} className="crypto-image" />
+        <p>{crypto.id}</p>
           <button className="close-button" onClick={onClose}>&times;</button>
         </div>
         <div className="modal-body">
-          <p>{crypto.name} ({crypto.symbol.toUpperCase()}).</p>
+          {/* <p>{crypto.name} ({crypto.symbol.toUpperCase()}).</p> */}
           <div className="alerts-info">
-            <p><strong>Current Price:</strong> {crypto.current_price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+            <p><strong>Current Price:</strong> {crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             <p><strong>Total Holdings:</strong> {crypto.total_amount} {crypto.symbol.toUpperCase()}</p>
-            <p><strong>Value:</strong> ${(crypto.current_price * crypto.total_amount).toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}</p>
+            <p><strong>Value:</strong> {(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
           </div>
           <div className="form-group">
-            <label htmlFor="price-threshold">Set Price Alert ($):</label>
-            <input type="number" id="price-threshold" name="price-threshold" placeholder="Enter price" 
+            {/* <label htmlFor="price-threshold">Set Price Alert ($)</label> */}
+            <input type="number" id="price-threshold" name="price-threshold" placeholder="Set Price Alert" 
                    value={priceThreshold} onChange={e => setPriceThreshold(e.target.value)} />
           </div>
-          <button className="button" onClick={setPriceAlert}>Set Alert</button>
+          <button className="buttonAlert" onClick={setPriceAlert}>Set Alert</button>
         </div>
       </div>
     </div>

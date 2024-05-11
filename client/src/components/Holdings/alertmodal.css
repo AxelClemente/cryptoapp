@@ -60,14 +60,32 @@
     box-sizing: border-box;
   }
   
-  .button {
+  .buttonAlert {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #f7931a;
     color: white;
     text-align: center;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
+
+  .crypto-image {
+    width: 1rem;
+    height: 1rem;   
+  }
+
+  .alerts-info {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(235, 233, 233, 0.8); /* Fondo casi transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 15px; /* Espacio interior para separar el contenido de los bordes */
+    margin-top: 10px; /* Separación con elementos anteriores */
+    margin-bottom: 20px; /* Separación con elementos posteriores */
+    
+    
+}
   
