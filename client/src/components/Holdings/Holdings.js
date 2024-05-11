@@ -153,21 +153,35 @@ return (
       <button className="chart-button" onClick={() => setShowTotalModal(true)}>Chart</button>
     </div>
 
+    <div className='namePriceEtc'>
+      <div>
+        <p className='titleNamePriceqtyTotal'>Name</p>
+      </div>
+      <div className='rest'>
+        <p className='titleNamePriceqtyTotal'>Price</p>
+        <p className='titleNamePriceqtyTotal'>qty</p>
+        <p className='titleNamePriceqtyTotal'>Total</p>
+      </div>
+    </div>
+
     <div className="holdings-list-container">
       {cryptos.map((crypto) => (
         <div key={crypto.id} className="holdings-item">
-          <img className="crypto-image" src={crypto.image} alt={crypto.name} />
+          
           <div className="crypto-detailss">
-            <p className="crypto-name">{crypto.name}</p>
-            <p className="crypto-amount">QTY: {crypto.total_amount}</p>
+            <img className="crypto-image" src={crypto.image} alt={crypto.name} />
+            <p className="crypto-name">{crypto.id}</p>
             <p >{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+            <p className="crypto-amount">{crypto.total_amount}</p>
             <p className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
           </div>
+
           <div className="crypto-actions">
             <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
             <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analyze</button>
             <button className="alert-button" onClick={() => handleOpenAlertModal(crypto)}>Alert</button>
           </div>
+
         </div>
       ))}
     </div>

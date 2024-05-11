@@ -16,11 +16,39 @@
   background-color: #f8f9fa; /* Fondo claro para el encabezado */
   background: white;
   border-radius: 8px;
-  padding:2rem 6rem;
+  padding:1.5rem 7rem;
   
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
   max-width: 20rem;
 
+}
+
+.titleNamePriceqtyTotal {
+ font-size: 0.8rem; 
+ font-weight: bold;
+}
+
+.rest {
+  display: flex ;
+  justify-content: space-between;
+}
+
+.namePriceEtc {
+  display: flex;
+  width: 50%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  margin-top: 2rem;
+  border-top: 1px solid #eeecec; /* Línea gris fina en la parte superior */
+  border-bottom: 1px solid #eeecec; /* Línea gris fina en la parte inferior */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.namePriceEtc > div:first-child {
+  flex: 2; /* Ocupa 2 partes del espacio disponible */
+}
+
+.namePriceEtc > div:nth-child(2) {
+  flex: 1; /* Ocupa 1 parte del espacio disponible */
 }
 
 .logo-image {
@@ -47,80 +75,61 @@
   color: #f7931a;
 }
 
-.holdings-list-container {
-  padding: 20px;
-}
+
 
 .holdings-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #eaeaea;
+  
+
 }
 
 
-.crypto-details {
-  flex-grow: 1;
-  margin-left: 20px;
+.crypto-detailss {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10rem; /* Establece un espacio fijo entre cada elemento */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
 }
 
 .crypto-name {
-  font-size: 20px; /* Tamaño de fuente más grande para el nombre */
-  color: #333; /* Color de texto oscuro para el nombre */
-  margin-bottom: 5px; /* Espacio debajo del nombre */
+  font-size: 1rem; /* Tamaño de fuente más grande para el nombre */
+
+}
+
+.crypto-actions {
+  font-size: 0.8rem; /* Tamaño de fuente más grande para el nombre */
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+
+
+}
+
+.crypto-name, .crypto-amount, .crypto-pricee {
+  /* Puedes aplicar estilos adicionales aquí si es necesario */
+  margin: 0; /* Elimina márgenes predeterminados para manejar el espaciado exclusivamente con gap */
 }
 
 
 
 .sell-button, .analyze-button, .alert-button {
-  margin-left: 8px;
-  padding: 8px 16px;
+  margin-left: 6rem;
   border-radius: 4px;
-  border: 1px solid #ccc; /* Bordes sutiles para los botones */
-  background-color: #f7931a; /* Fondo blanco para los botones */
-  color: white; /* Color de texto que combina con el botón Chart */
+  color: rgb(130, 126, 126); /* Color de texto que combina con el botón Chart */
   cursor: pointer;
   transition: all 0.3s; /* Transición suave para interacción */
 }
 
-.sell-button:hover, .analyze-button:hover, .alert-button:hover {
-  background-color: #eaeaea; /* Cambio de color de fondo al pasar el mouse */
-}
-
 /* Media queries para responsividad */
 @media (max-width: 640px) {
-  .holdings-item {
-    display: flex;
-    
-  }
 
-  .crypto-actions {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sell-button, .analyze-button, .alert-button {
-    margin-top: 5px;
-    width: 100%;
-  }
-
-  .header-controls{
-    margin-top: 4rem;
-  }
-
-  .crypto-detailss {
-    
-    margin-right: 10rem;
-  }
-
-  .crypto-pricee{
-    margin-top: 1rem;
-    font-weight: 600;
-    color: green;
-  }
 }
 
 /* Agregar más media queries y estilos si se necesitan para la adaptación móvil */
