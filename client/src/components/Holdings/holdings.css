@@ -92,22 +92,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10rem; /* Establece un espacio fijo entre cada elemento */
+  gap: 2.5rem; /* Establece un espacio fijo entre cada elemento */
   margin-top: 1rem;
   margin-bottom: 1rem;
 
 }
 
 .crypto-name {
-  font-size: 1rem; /* Tamaño de fuente más grande para el nombre */
 
 }
 
 .crypto-actions {
   font-size: 0.8rem; /* Tamaño de fuente más grande para el nombre */
   display: flex;
-  justify-content: space-between;
-  padding: 2rem 4rem;
+  justify-content: center;
+  margin-right: 1rem;
+  
 
 
 }
@@ -115,6 +115,8 @@
 .crypto-name, .crypto-amount, .crypto-pricee {
   /* Puedes aplicar estilos adicionales aquí si es necesario */
   margin: 0; /* Elimina márgenes predeterminados para manejar el espaciado exclusivamente con gap */
+  font-size: 0.8rem; /* Tamaño de fuente más grande para el nombre */
+
 }
 
 
@@ -130,6 +132,33 @@
 /* Media queries para responsividad */
 @media (max-width: 640px) {
 
+  .namePriceEtc {
+    display: flex;
+    width: 90%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    margin-top: 2rem;
+    border-top: 1px solid #eeecec; /* Línea gris fina en la parte superior */
+    border-bottom: 1px solid #eeecec; /* Línea gris fina en la parte inferior */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .namePriceEtc > div:first-child {
+    flex: 1; /* Ocupa 2 partes del espacio disponible */
+  }
+  
+  .namePriceEtc > div:nth-child(2) {
+    flex: 1; /* Ocupa 1 parte del espacio disponible */
+  }
+
+  .holdings-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border-bottom: 1px solid #eaeaea;
+    
+  
+  }
 }
 
 /* Agregar más media queries y estilos si se necesitan para la adaptación móvil */

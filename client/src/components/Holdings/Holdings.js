@@ -159,7 +159,7 @@ return (
       </div>
       <div className='rest'>
         <p className='titleNamePriceqtyTotal'>Price</p>
-        <p className='titleNamePriceqtyTotal'>qty</p>
+        <p className='titleNamePriceqtyTotal'>Amount</p>
         <p className='titleNamePriceqtyTotal'>Total</p>
       </div>
     </div>
