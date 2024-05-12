@@ -1,3 +1,31 @@
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-size: 0.6rem;
+
+}
+
+.crypto-table th, .crypto-table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle; /* Alinea los contenidos de las celdas verticalmente en el centro */
+
+}
+
+
+.crypto-actions button {
+  margin-right: 10px;
+  padding: 5px 10px; /* Ajusta el tamaño de los botones */
+}
+
+.ImagenNombreTickerV {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Asegura que los elementos comiencen desde el borde izquierdo */
+
+}
+
 .holdings-container {
   display: flex;
   justify-content: center; /* Centra los hijos horizontalmente */
@@ -17,7 +45,6 @@
   background: white;
   border-radius: 8px;
   padding:1.5rem 7rem;
-  
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
   max-width: 20rem;
 
@@ -98,17 +125,24 @@
 
 }
 
-.crypto-name {
+.ImagenNombreTicker {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.2rem; /* Tamaño de fuente más grande para el nombre */
+
+  justify-content: center; /* Centra los elementos del nombre y símbolo verticalmente si necesario */
 
 }
 
+
+
 .crypto-actions {
-  font-size: 0.8rem; /* Tamaño de fuente más grande para el nombre */
+  font-size: 0.5rem; /* Tamaño de fuente más grande para el nombre */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-right: 1rem;
   
-
 
 }
 
@@ -120,50 +154,35 @@
 }
 
 
-
-.sell-button, .analyze-button, .alert-button {
+/* .sell-button, .analyze-button, .alert-button {
   margin-left: 6rem;
   border-radius: 4px;
-  color: rgb(130, 126, 126); /* Color de texto que combina con el botón Chart */
+  color: rgb(130, 126, 126); 
   cursor: pointer;
-  transition: all 0.3s; /* Transición suave para interacción */
+  transition: all 0.3s; 
+} */
+
+
+.crypto-name {
+  display: inline-block; /* Asegura que el nombre aparezca junto a la imagen */
+  margin-left: 10px; /* Espacio entre la imagen y el texto */
 }
 
-/* Media queries para responsividad */
+.crypto-actions button {
+  margin-right: 10px; /* Espaciado entre botones */
+}
+
 @media (max-width: 640px) {
-
-  .namePriceEtc {
-    display: flex;
-    width: 90%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-    margin-top: 2rem;
-    border-top: 1px solid #eeecec; /* Línea gris fina en la parte superior */
-    border-bottom: 1px solid #eeecec; /* Línea gris fina en la parte inferior */
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  .crypto-table {
+    display: block; /* Hace la tabla desplazable horizontalmente en pantallas pequeñas */
+    overflow-x: auto;
   }
 
-  .namePriceEtc > div:first-child {
-    flex: 1; /* Ocupa 2 partes del espacio disponible */
-  }
-  
-  .namePriceEtc > div:nth-child(2) {
-    flex: 1; /* Ocupa 1 parte del espacio disponible */
-  }
-
-  .holdings-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    border-bottom: 1px solid #eaeaea;
-    
-  
+  .crypto-imagen {
+    width: 25px; /* Ajusta el tamaño según sea necesario */
+    height: 25px; /* Ajusta el tamaño según sea necesario */
   }
 }
-
-/* Agregar más media queries y estilos si se necesitan para la adaptación móvil */
-
-
 
 
 

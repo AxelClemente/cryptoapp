@@ -153,38 +153,38 @@ return (
       <button className="chart-button" onClick={() => setShowTotalModal(true)}>Chart</button>
     </div>
 
-    <div className='namePriceEtc'>
-      <div>
-        <p className='titleNamePriceqtyTotal'>Name</p>
-      </div>
-      <div className='rest'>
-        <p className='titleNamePriceqtyTotal'>Price</p>
-        <p className='titleNamePriceqtyTotal'>Amount</p>
-        <p className='titleNamePriceqtyTotal'>Total</p>
-      </div>
-    </div>
-
-    <div className="holdings-list-container">
-      {cryptos.map((crypto) => (
-        <div key={crypto.id} className="holdings-item">
-          
-          <div className="crypto-detailss">
-            <img className="crypto-image" src={crypto.image} alt={crypto.name} />
-            <p className="crypto-name">{crypto.id}</p>
-            <p >{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-            <p className="crypto-amount">{crypto.total_amount}</p>
-            <p className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-          </div>
-
-          <div className="crypto-actions">
-            <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
-            <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analyze</button>
-            <button className="alert-button" onClick={() => handleOpenAlertModal(crypto)}>Alert</button>
-          </div>
-
-        </div>
-      ))}
-    </div>
+    <table className="crypto-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Amount</th>
+          <th>Total</th>
+          <th>Actions</th> 
+        </tr>
+      </thead>
+    <tbody>
+        {cryptos.map((crypto) => (
+          <>
+          <tr key={crypto.id}>
+            <td >
+              <img className="crypto-imagen" src={crypto.image} alt={crypto.name} />
+            </td>           
+            <td>{crypto.id}</td>
+            <td>{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+            <td className="crypto-amount">{crypto.total_amount}</td>
+            <td className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+            <td className="crypto-actions">
+              <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
+              <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analyze</button>
+              <button className="alert-button" onClick={() => handleOpenAlertModal(crypto)}>Alert</button>
+            </td>
+          </tr>
+          </>
+        ))}
+      </tbody>
+  </table>
 
     {showSellModal && (
       <SellModal
