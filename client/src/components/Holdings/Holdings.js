@@ -6,6 +6,9 @@ import AnalyzeModal from '../Holdings/AnalyzeModal';
 import TotalModal from '../Holdings/TotalModal';
 import AlertModal from '../Holdings/AlertModal'
 import '../Holdings/holdings.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDollarSign, faChartLine, faBell } from '@fortawesome/free-solid-svg-icons';
+
 
 function Holdings() {
   const [cryptos, setCryptos] = useState([]);
@@ -176,9 +179,15 @@ return (
             <td className="crypto-amount">{crypto.total_amount}</td>
             <td className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
             <td className="crypto-actions">
-              <button className="sell-button" onClick={() => handleOpenSellModal(crypto)}>Sell</button>
-              <button className="analyze-button" onClick={() => handleOpenAnalyzeModal(crypto)}>Analyze</button>
-              <button className="alert-button" onClick={() => handleOpenAlertModal(crypto)}>Alert</button>
+                <button className="icon-button" onClick={() => handleOpenSellModal(crypto)}>
+                  <FontAwesomeIcon icon={faDollarSign} />
+                </button>
+                <button className="icon-button" onClick={() => handleOpenAnalyzeModal(crypto)}>
+                  <FontAwesomeIcon icon={faChartLine} />
+                </button>
+                <button className="icon-button" onClick={() => handleOpenAlertModal(crypto)}>
+                  <FontAwesomeIcon icon={faBell} />
+                </button>
             </td>
           </tr>
           </>

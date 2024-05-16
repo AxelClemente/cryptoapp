@@ -3,6 +3,7 @@
   border-collapse: collapse;
   margin-top: 2rem;
   font-size: 0.6rem;
+  margin-left: 4rem;
 
 }
 
@@ -14,10 +15,7 @@
 }
 
 
-.crypto-actions button {
-  margin-right: 10px;
-  padding: 5px 10px; /* Ajusta el tamaño de los botones */
-}
+
 
 .ImagenNombreTickerV {
   display: flex;
@@ -44,7 +42,7 @@
   background-color: #f8f9fa; /* Fondo claro para el encabezado */
   background: white;
   border-radius: 8px;
-  padding:1.5rem 7rem;
+  padding:1.5rem 5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
   max-width: 20rem;
 
@@ -71,8 +69,8 @@
 }
 
 .logo-image {
-  width: 6rem;
-  height: 6rem; 
+  width: 4rem;
+  height: 4rem; 
 }
 
 .total-holdings-value {
@@ -106,13 +104,14 @@
 .crypto-actions {
   font-size: 0.5rem; /* Tamaño de fuente más grande para el nombre */
   display: flex;
-  flex-direction: column;
+  text-align: center;
   justify-content: center;
   margin-right: 1rem;
+  margin-top: 1rem;
   
 }
 
-.crypto-name, .crypto-amount, .crypto-pricee {
+.crypto-name{
   /* Puedes aplicar estilos adicionales aquí si es necesario */
   margin: 0; /* Elimina márgenes predeterminados para manejar el espaciado exclusivamente con gap */
   font-size: 0.8rem; /* Tamaño de fuente más grande para el nombre */
