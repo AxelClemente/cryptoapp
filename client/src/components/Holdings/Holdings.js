@@ -7,7 +7,7 @@ import TotalModal from '../Holdings/TotalModal';
 import AlertModal from '../Holdings/AlertModal'
 import '../Holdings/holdings.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDollarSign, faChartLine, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faDollarSign, faChartLine, faBell, faChartPie } from '@fortawesome/free-solid-svg-icons';
 
 
 function Holdings() {
@@ -143,42 +143,41 @@ function Holdings() {
   }
 
 
-return (
-  <div className="holdings-container">
+  return (
+    <div className="holdings-container">
+      <Header />
+      <div className="header-controls">
+        <img className="logo-image" src="logo1.png" alt="Logo" />
+        <p className="total-holdings-value">
+          {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </p>
+        <button className="chart-button" onClick={() => setShowTotalModal(true)}>
+          <FontAwesomeIcon icon={faChartPie} />
+        </button>
+      </div>
 
-    <Header/>
-    
-    <div className="header-controls">
-      <img className="logo-image" src="logo1.png" alt="Logo" />
-      <p className="total-holdings-value">
-        {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-      </p>
-      <button className="chart-button" onClick={() => setShowTotalModal(true)}>Chart</button>
-    </div>
-
-    <table className="crypto-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Amount</th>
-          <th>Total</th>
-          <th>Actions</th> 
-        </tr>
-      </thead>
-    <tbody>
-        {cryptos.map((crypto) => (
-          <>
-          <tr key={crypto.id}>
-            <td >
-              <img className="crypto-imagen" src={crypto.image} alt={crypto.name} />
-            </td>           
-            <td>{crypto.id}</td>
-            <td>{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-            <td className="crypto-amount">{crypto.total_amount}</td>
-            <td className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-            <td className="crypto-actions">
+      <table className="crypto-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Total</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cryptos.map((crypto) => (
+            <tr key={crypto.id}>
+              <td>
+                <img className="crypto-imagen" src={crypto.image} alt={crypto.name} />
+              </td>
+              <td>{crypto.id}</td>
+              <td>{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+              <td className="crypto-amount">{crypto.total_amount}</td>
+              <td className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+              <td className="crypto-actions">
                 <button className="icon-button" onClick={() => handleOpenSellModal(crypto)}>
                   <FontAwesomeIcon icon={faDollarSign} />
                 </button>
@@ -188,12 +187,18 @@ return (
                 <button className="icon-button" onClick={() => handleOpenAlertModal(crypto)}>
                   <FontAwesomeIcon icon={faBell} />
                 </button>
+              </td>
+            </tr>
+          ))}
+          <tr>
+            <td colSpan="4"><hr /></td>
+            <td className="total-amount">
+              {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
             </td>
+            <td></td>
           </tr>
-          </>
-        ))}
-      </tbody>
-  </table>
+        </tbody>
+      </table>
 
     {showSellModal && (
       <SellModal
