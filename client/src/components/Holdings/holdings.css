@@ -70,14 +70,6 @@
   padding-bottom: 1rem;
 }
 
-.namePriceEtc > div:first-child {
-  flex: 2; /* Ocupa 2 partes del espacio disponible */
-}
-
-.namePriceEtc > div:nth-child(2) {
-  flex: 1; /* Ocupa 1 parte del espacio disponible */
-}
-
 .logo-image {
   width: 6rem;
   height: 6rem; 
@@ -102,8 +94,6 @@
   color: #f7931a;
 }
 
-
-
 .holdings-item {
   display: flex;
   flex-direction: column;
@@ -111,30 +101,7 @@
   padding: 10px 0;
   border-bottom: 1px solid #eaeaea;
   
-
 }
-
-
-.crypto-detailss {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2.5rem; /* Establece un espacio fijo entre cada elemento */
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-}
-
-.ImagenNombreTicker {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.2rem; /* Tamaño de fuente más grande para el nombre */
-
-  justify-content: center; /* Centra los elementos del nombre y símbolo verticalmente si necesario */
-
-}
-
-
 
 .crypto-actions {
   font-size: 0.5rem; /* Tamaño de fuente más grande para el nombre */
@@ -143,7 +110,6 @@
   justify-content: center;
   margin-right: 1rem;
   
-
 }
 
 .crypto-name, .crypto-amount, .crypto-pricee {
