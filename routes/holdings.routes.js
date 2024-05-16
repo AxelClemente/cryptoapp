@@ -111,7 +111,7 @@ router.post('/setPriceAlert', authenticateToken, async (req, res) => {
     });
 
     // Programar la verificación del precio
-    const job = schedule.scheduleJob('*/10 * * * *', async function() {
+    const job = schedule.scheduleJob('0 0 * * *', async function() {
       const response = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoId}&vs_currencies=usd`);
       const currentPrice = response.data[cryptoId].usd;
 
