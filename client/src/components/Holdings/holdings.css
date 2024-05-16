@@ -107,6 +107,7 @@
   text-align: center;
   justify-content: center;
   margin-right: 1rem;
+  margin-top: 0.5rem;
   
   
 }
@@ -146,6 +147,9 @@
   .crypto-imagen {
     width: 25px; /* Ajusta el tamaño según sea necesario */
     height: 25px; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%; /* Hace la imagen circular */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del contenedor */
+
   }
 }
 
