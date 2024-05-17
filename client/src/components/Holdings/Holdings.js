@@ -21,6 +21,8 @@ function Holdings() {
   const [selectedCrypto, setSelectedCrypto] = useState({});
   const [averagePrice, setAveragePrice] = useState(0);
   const [sourceDetails, setSourceDetails] = useState([]);
+  const [totalHoldingsAverage, setTotalHoldingsAverage] = useState(0); // Estado para el total a precio promedio
+
 
   useEffect(() => {
     const fetchPortfolioAndMarketData = async () => {
@@ -55,7 +57,7 @@ function Holdings() {
                 ...crypto,
                 current_price: marketCrypto.current_price || 0,
                 image: marketCrypto.image || 'path/to/default/image',
-                symbol: marketCrypto.symbol || 'N/A',  // Asegurando que el símbolo esté definido
+                symbol: marketCrypto.symbol || 'N/A',
                 total_amount: crypto.amount,
                 sources: [{ source: crypto.source, amount: crypto.amount }]
               });
@@ -64,8 +66,17 @@ function Holdings() {
           return acc;
         }, []);
   
+        const totalHoldings = cryptosData.reduce((acc, crypto) => acc + (crypto.current_price * crypto.total_amount), 0);
+  
+        const totalHoldingsAverage = cryptosData.reduce((acc, crypto) => {
+          const totalPaid = crypto.sources.reduce((sum, source) => sum + (source.amount * crypto.dailyPrice), 0);
+          const averagePrice = totalPaid / crypto.total_amount;
+          return acc + (averagePrice * crypto.total_amount);
+        }, 0);
+  
         setCryptos(cryptosData);
-        setTotalHoldings(cryptosData.reduce((acc, crypto) => acc + (crypto.current_price * crypto.total_amount), 0));
+        setTotalHoldings(totalHoldings);
+        setTotalHoldingsAverage(totalHoldingsAverage);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -75,6 +86,7 @@ function Holdings() {
   
     fetchPortfolioAndMarketData();
   }, []);
+  
   
   const handleOpenSellModal = (crypto) => {
     const relevantEntries = cryptos.filter(c => c.id === crypto.id);
@@ -195,6 +207,20 @@ function Holdings() {
             <td className="total-amount">
               {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
             </td>
+
+
+            <td></td>
+          </tr>
+          <tr>
+            <td colSpan="4"><hr /></td>
+            <td className="total-amount">
+              {totalHoldingsAverage.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colSpan="4"><hr /></td>
+            <td className="total-amount" style={{ color: totalHoldings > totalHoldingsAverage ? 'green' : 'red' }}>
+            {(totalHoldings - totalHoldingsAverage).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}            </td>
             <td></td>
           </tr>
         </tbody>
