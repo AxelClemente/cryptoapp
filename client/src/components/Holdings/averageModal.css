@@ -42,7 +42,7 @@
 }
 
 .crypto-percentage {
-  font-size: 0.8em;
+  font-size: 0.8em; 
   color: gray;
   align-items: center;
   margin-left: 0.5rem;
@@ -123,11 +123,22 @@ font-size: 0.8rem;
   font-size: 0.8rem; /* Tamaño más pequeño para el porcentaje */
 }
 
-.chart-container {
-  margin-bottom: 2rem;
+.average-table {
   width: 100%;
-  height: auto;
+  border-collapse: collapse;
+}
+
+.average-table th, .average-table td {
+  padding: 8px;
+}
+
+.average-table th {
+ 
+  text-align: left;
 }
 
 
 
+.average-table tr:hover {
+  background-color: #ddd;
+}
