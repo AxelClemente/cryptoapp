@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.crypto-image {
+.crypto-imagens {
   width: 20px;
   height: 20px;
   margin-right: 10px;
@@ -46,6 +46,11 @@
   color: gray;
   align-items: center;
   margin-left: 0.5rem;
+}
+
+.crypto-a {
+  font-size: 0.8em; /* Tamaño más pequeño para el porcentaje */
+  margin-right: 1rem;
 }
 
 .titleModal {

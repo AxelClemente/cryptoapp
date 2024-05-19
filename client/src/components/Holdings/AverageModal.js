@@ -10,7 +10,9 @@ function AverageModal({ onClose, data }) {
         <ul>
           {data.map((crypto) => (
             <li key={crypto.id}>
-              <img src={crypto.image} alt={crypto.name} className="crypto-image" />
+              <img src={crypto.image} alt={crypto.id} className="crypto-imagens" />
+              <span className="crypto-a"> {crypto.id}</span>
+
               <span>
                 {crypto.value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} 
                 <span className="crypto-percentage"> {crypto.percentage.toFixed(2)}%</span>
