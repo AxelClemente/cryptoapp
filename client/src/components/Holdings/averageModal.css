@@ -123,8 +123,11 @@ font-size: 0.8rem;
   font-size: 0.8rem; /* Tamaño más pequeño para el porcentaje */
 }
 
-/* Estilo para el gráfico */
 .chart-container {
   margin-bottom: 2rem;
+  width: 100%;
+  height: auto;
 }
+
+
 

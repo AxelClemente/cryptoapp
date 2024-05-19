@@ -62,7 +62,7 @@ function AverageModal({ onClose, data }) {
       y: {
         title: {
           display: true,
-          text: 'Value (USD)',
+          text: 'USD',
         },
         beginAtZero: true,
         ticks: {
