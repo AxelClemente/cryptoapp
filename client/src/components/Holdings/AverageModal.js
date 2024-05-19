@@ -40,19 +40,19 @@ function AverageModal({ onClose, data }) {
         <table className="average-table">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>USD</th>
-              <th>%</th>
+              <th className="small-text"></th>
+              <th className="small-texttt">Name</th>
+              <th className="small-texttt">USD</th>
+              <th className="small-texttt">%</th>
             </tr>
           </thead>
           <tbody>
             {data.map((crypto) => (
               <tr key={crypto.id}>
                 <td><img src={crypto.image} alt={crypto.id} className="crypto-imagens" /></td>
-                <td>{crypto.id}</td>
-                <td>{crypto.value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-                <td>{crypto.percentage.toFixed(2)}%</td>
+                <td className="small-text">{crypto.id}</td>
+                <td className="small-text">{crypto.value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                <td className="small-text">{crypto.percentage.toFixed(2)}%</td>
               </tr>
             ))}
           </tbody>

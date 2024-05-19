@@ -142,3 +142,11 @@ font-size: 0.8rem;
 .average-table tr:hover {
   background-color: #ddd;
 }
+
+.small-text {
+  font-size: 0.7rem; /* Tamaño más pequeño para el texto en las celdas */
+}
+
+.small-texttt {
+  font-size: 0.8rem; /* Tamaño más pequeño para el texto en las celdas */
+}
