@@ -5,6 +5,7 @@ import SellModal from '../SellModal/SellModal';
 import AnalyzeModal from '../Holdings/AnalyzeModal';
 import TotalModal from '../Holdings/TotalModal';
 import AlertModal from '../Holdings/AlertModal'
+import AverageModal from './AverageModal';
 import '../Holdings/holdings.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign, faChartLine, faBell, faChartPie } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +23,20 @@ function Holdings() {
   const [averagePrice, setAveragePrice] = useState(0);
   const [sourceDetails, setSourceDetails] = useState([]);
   const [totalHoldingsAverage, setTotalHoldingsAverage] = useState(0); // Estado para el total a precio promedio
+  const [showAverageModal, setShowAverageModal] = useState(false);  // Nuevo estado para controlar la visibilidad del AverageModal
+  const [averageModalData, setAverageModalData] = useState([]);  // Estado para los datos del modal de promedio
+
+  const handleOpenAverageModal = () => {
+    const data = cryptos.map(crypto => ({
+      ...crypto,
+      percentage: (crypto.total_amount * crypto.dailyPrice) / totalHoldingsAverage * 100,
+      value: (crypto.total_amount * crypto.dailyPrice)
+    })).sort((a, b) => b.percentage - a.percentage);  // Ordenar por porcentaje de mayor a menor
+  
+    setAverageModalData(data);
+    setShowAverageModal(true);
+  };
+
 
 
   useEffect(() => {
@@ -220,7 +235,11 @@ function Holdings() {
           <tr>
             <td colSpan="4"><hr /></td>
             <td className="total-amount" style={{ color: totalHoldings > totalHoldingsAverage ? 'green' : 'red' }}>
-            {(totalHoldings - totalHoldingsAverage).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}            </td>
+              <p className="total-holdings-average-value" onClick={handleOpenAverageModal} style={{ cursor: 'pointer' }}>
+                {totalHoldingsAverage.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+              </p>
+                          
+            </td>
             <td></td>
           </tr>
         </tbody>
@@ -234,6 +253,12 @@ function Holdings() {
         cryptos={cryptos}
         sources={sourceDetails}
         averagePrice={averagePrice}
+      />
+    )}
+    {showAverageModal && (
+      <AverageModal
+        onClose={() => setShowAverageModal(false)}
+        data={averageModalData}
       />
     )}
     {showAnalyzeModal && (
