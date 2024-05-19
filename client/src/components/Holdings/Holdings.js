@@ -184,67 +184,74 @@ function Holdings() {
       </div>
 
       <table className="crypto-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Total</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cryptos.map((crypto) => (
-            <tr key={crypto.id}>
-              <td>
-                <img className="crypto-imagen" src={crypto.image} alt={crypto.name} />
-              </td>
-              <td>{crypto.id}</td>
-              <td>{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-              <td className="crypto-amount">{crypto.total_amount}</td>
-              <td className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-              <td className="crypto-actions">
-                <button className="icon-button" onClick={() => handleOpenSellModal(crypto)}>
-                  <FontAwesomeIcon icon={faDollarSign} />
-                </button>
-                <button className="icon-button" onClick={() => handleOpenAnalyzeModal(crypto)}>
-                  <FontAwesomeIcon icon={faChartLine} />
-                </button>
-                <button className="icon-button" onClick={() => handleOpenAlertModal(crypto)}>
-                  <FontAwesomeIcon icon={faBell} />
-                </button>
-              </td>
-            </tr>
-          ))}
-          <tr>
-            <td colSpan="4"><hr /></td>
-            <td className="total-amount">
-              {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-            </td>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Amount</th>
+      <th>Total</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {cryptos.map((crypto) => (
+      <tr key={crypto.id}>
+        <td>
+          <img className="crypto-imagen" src={crypto.image} alt={crypto.name} />
+        </td>
+        <td>{crypto.id}</td>
+        <td>{crypto.current_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+        <td className="crypto-amount">{crypto.total_amount}</td>
+        <td className="crypto-pricee">{(crypto.current_price * crypto.total_amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+        <td className="crypto-actions">
+          <button className="icon-button" onClick={() => handleOpenSellModal(crypto)}>
+            <FontAwesomeIcon icon={faDollarSign} />
+          </button>
+          <button className="icon-button" onClick={() => handleOpenAnalyzeModal(crypto)}>
+            <FontAwesomeIcon icon={faChartLine} />
+          </button>
+          <button className="icon-button" onClick={() => handleOpenAlertModal(crypto)}>
+            <FontAwesomeIcon icon={faBell} />
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
+<table className="crypto-table-summary">
+    <thead>
+      <tr>
+        <th></th>
 
-            <td></td>
-          </tr>
-          <tr>
-            <td colSpan="4"><hr /></td>
-            <td className="total-amount">
-              {totalHoldingsAverage.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td colSpan="4"><hr /></td>
-            <td className="total-amount" style={{ color: totalHoldings > totalHoldingsAverage ? 'green' : 'red' }}>
-              <p className="total-holdings-average-value" onClick={handleOpenAverageModal} style={{ cursor: 'pointer' }}>
-                {totalHoldingsAverage.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-              </p>
-                          
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-
+      </tr>
+    </thead>
+    <tbody>
+    <td></td>
+      <tr>
+        <td colSpan="4" className='currentValue'>Current Value</td>
+        <td className="total-amount">
+          {totalHoldings.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colSpan="4" className='currentValue'>Investment</td>
+        <td className="total-amount">
+          {totalHoldingsAverage.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colSpan="4" className='currentValue'>Profit/Loss</td>
+        <td className="total-amount" onClick={handleOpenAverageModal} style={{ color: totalHoldings > totalHoldingsAverage ? 'green' : 'red' }}>
+          {(totalHoldings - totalHoldingsAverage).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
     {showSellModal && (
       <SellModal
         onClose={() => setShowSellModal(false)}

@@ -151,6 +151,20 @@
     object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del contenedor */
 
   }
+
+  .currentValue {
+    font-size: 0.5rem;
+    padding-left: 4rem; /* Ajusta este valor según sea necesario para la separación */
+    padding-right: 1rem;
+
+  }
+
+  .total-amount {
+    font-size: 0.6rem;
+    text-align: right;
+  }
+  
+  
 }
 
 
