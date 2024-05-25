@@ -1,0 +1,70 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cryptoapp-dev-e533d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::298775772954:role/amplify-cryptoapp-dev-e533d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::298775772954:role/amplify-cryptoapp-dev-e533d-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-cryptoapp-dev-e533d-deployment",
+      "UnauthRoleName": "amplify-cryptoapp-dev-e533d-unauthRole",
+      "StackName": "amplify-cryptoapp-dev-e533d",
+      "StackId": "arn:aws:cloudformation:eu-west-1:298775772954:stack/amplify-cryptoapp-dev-e533d/b44d55f0-192b-11ef-983e-0a7ef1d350ff",
+      "AmplifyAppId": "dyzmnleo2vik5"
+    }
+  },
+  "function": {
+    "cryptoappd2d1d2c4": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2024-05-23T18:02:58.084Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2024-05-23T18:02:58.957Z",
+      "distZipFilename": "cryptoappd2d1d2c4-49426444455078507175-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-cryptoapp-dev-e533d-deployment",
+        "s3Key": "amplify-builds/cryptoappd2d1d2c4-49426444455078507175-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-cryptoapp-dev-e533d-deployment/amplify-cfn-templates/function/cryptoappd2d1d2c4-cloudformation-template.json",
+        "logicalId": "functioncryptoappd2d1d2c4"
+      },
+      "lastPushTimeStamp": "2024-05-23T18:04:35.194Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::298775772954:role/cryptoappLambdaRole11d957f9-dev",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:298775772954:function:cryptoappd2d1d2c4-dev",
+        "Name": "cryptoappd2d1d2c4-dev",
+        "LambdaExecutionRole": "cryptoappLambdaRole11d957f9-dev"
+      },
+      "lastPushDirHash": "p+PGGi3s7j+Siynlwwk6uUSbGE0="
+    }
+  },
+  "api": {
+    "cryptoAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "cryptoappd2d1d2c4",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-cryptoapp-dev-e533d-deployment/amplify-cfn-templates/api/cryptoAPI-cloudformation-template.json",
+        "logicalId": "apicryptoAPI"
+      },
+      "lastPushTimeStamp": "2024-05-23T18:04:35.194Z",
+      "output": {
+        "ApiName": "cryptoAPI",
+        "RootUrl": "https://wvdopdf5b0.execute-api.eu-west-1.amazonaws.com/dev",
+        "ApiId": "wvdopdf5b0"
+      },
+      "lastPushDirHash": "nGguiiI/8rL5N79nci/pjfdaEuE="
+    }
+  }
+}
