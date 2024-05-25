@@ -7,7 +7,7 @@ function GoogleLoginPage() {
   const navigate = useNavigate();
 
   const handleLoginSuccess = async (response) => {
-    const token = response.credential; // JWT proporcionado por Google
+    const token = response.credential; // JWT proporcionado por Google!
   
     try {
       // Usando una URL predeterminada en caso de que REACT_APP_URL no esté disponible
