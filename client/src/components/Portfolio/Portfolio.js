@@ -99,7 +99,7 @@ const Portfolio = () => {
                         placeholder=""
                         value={search}
                         onChange={e => setSearch(e.target.value)}
-                        style={{ paddingLeft: '30px' }}  // Deja espacio para el ícono
+                        style={{ paddingLeft: '30px' }}  // Deja espacio para el íconooo
                     />
                     <span className="search-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
