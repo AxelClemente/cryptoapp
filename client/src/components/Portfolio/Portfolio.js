@@ -150,6 +150,7 @@ const Portfolio = () => {
                     cryptoName={selectedCryptoId}
                     source={source}
                     setSource={setSource}
+                    setSelectedCryptoPrice={setSelectedCryptoPrice}
                     onConfirm={handleAddToPortfolio}
                 />
             )}
