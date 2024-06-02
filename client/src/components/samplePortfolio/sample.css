@@ -75,34 +75,7 @@
     
   }
   
-  @media (min-width: 768px) {
-      .container {
-        margin-left: 210px;
-        margin-right: 210px;
-      }
-    
-      .holdings-image {
-        height: 64px;
-        width: 64px;
-      }
-    
-      .total-value {
-        font-size: 18px;
-      }
-    
-      .crypto-image {
-        height: 48px;
-        width: 48px;
-      }
-    
-      .crypto-name {
-        font-size: 16px;
-      }
-    
-      .crypto-details {
-        font-size: 14px;
-      }
-  }
+
   
   @media (max-width: 640px) {
       .crypto-item {

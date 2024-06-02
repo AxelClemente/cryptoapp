@@ -65,8 +65,8 @@ const Modal = ({ onClose, onConfirm, amount, setAmount, currentPrice, cryptoName
                 type="text"
                 name="total"
                 id="total"                     
-                placeholder={totalPrice.toFixed(2).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
-                value={totalPrice.toFixed(2).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
+                placeholder={totalPrice.toFixed(2).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
+                value={totalPrice.toFixed(2).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
                 readOnly
               />
             </div>

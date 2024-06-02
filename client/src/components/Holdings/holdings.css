@@ -1,11 +1,41 @@
-.crypto-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 2rem;
-  font-size: 0.6rem;
-  margin-left: 4rem;
+@media (min-width: 1024px) {
+  .crypto-table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 0.6rem;
+    margin-left: 4rem;
+  
+  }
 
 }
+  
+  .crypto-table {
+    display: block; /* Hace la tabla desplazable horizontalmente en pantallas pequeñas */
+    overflow-x: auto;
+  }
+
+  .crypto-imagen {
+    width: 25px; /* Ajusta el tamaño según sea necesario */
+    height: 25px; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%; /* Hace la imagen circular */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del contenedor */
+
+  }
+
+  .currentValue {
+    font-size: 0.5rem;
+    padding-left: 5rem; /* Ajusta este valor según sea necesario para la separación */
+    padding-right: 1rem;
+
+  }
+
+  .total-amount {
+    font-size: 0.6rem;
+    text-align: right;
+  }
+
+
+
 
 .crypto-table th, .crypto-table td {
   padding: 8px;
@@ -162,6 +192,15 @@
   .total-amount {
     font-size: 0.6rem;
     text-align: right;
+  }
+
+  .crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 0.6rem;
+    margin-left: 4rem;
+  
   }
   
   
